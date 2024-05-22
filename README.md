@@ -1,11 +1,33 @@
-# README
+# Ruby On railsチュートリアルのsample_app
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+これは次の教材で作られたサンプルアプリケーションです。
+[*Ruby on Rails チュートリアル*](https://railstutorial.jp/)
+( 第７版)
+[Michael Hartl](https://www.michaelhartl.com/) 著
 
-Things you may want to cover:
+##ライセンス
 
-* Ruby version
+[Ruby on Railsチュートリアル](https://railstutorial.jp/)内にある
+ソースコードはMITライセンスとBeerwareライセンスのもとで公開されています。
+詳細は[LICENSE.md](LICENSE.md)をご覧ください。
+
+##使い方
+
+このアプリケーションを動かすにはデータベースをマイグレーションを実行します。
+
+、、、
+$ rails db:migrate
+、、、
+
+その後、テストを実行してください
+
+、、、
+$ rails test
+、、、
+
+詳しくは[*Ruby On Railsチュートリアル*](https://railstutorial.jp)を参考にしてください。
+
+* Ruby version 3.2.3
 
 * System dependencies
 
