@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+  get 'password_resets/edit'
   root "static_pages#home"
   get "/help", to: "static_pages#help", as: "help"
   get "/about", to: "static_pages#about"
@@ -11,4 +13,6 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   ## /account_activations/:id/editがurlとして使用可能に
   ## edit_account_activation_urlが名前付きルーティングとして利用可能に
+  resources :password_resets, only: [:new, :create, :edit, :update]
+  ## それぞれ　GET, POST, GET, PATCHに対応
 end
