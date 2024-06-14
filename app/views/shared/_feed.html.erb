@@ -1,0 +1,19 @@
+<% if @feed_items.any? %>
+    <ol class="microposts">
+        <%= render @feed_items %>
+    </ol>
+    <%= will_paginate @feed_items,
+                        params: { controller: :static_pages, action: :home} %>
+<% end%>
+
+<%# models/user.rbで定義したfeedは入力されたidのmicropostを返す
+　  コントローラーで定義されたインスタンス関数@feed_items=current_user.feed.paginate(page: params[gage])
+    によってcurrent_user..sessions_helper#current_userによってセッション内のuser_idであるユーザ
+    もしくは暗号化されたクッキーないのuser_idであるユーザの最初のページのmicropostが全て入っている
+    render により_feed_item.html.erbというパーシャルを探すのではなくfeedの中身であるmicropostsのパーシャルmicroposts/micropost
+    をrailsが探し出し、各々表示させている%>
+
+<%# 最後のparams: 以降はwill_pagenateがnext_pageボタンによって作るURLが現在のURLに基づくために、
+micropostの生成直後はmicroposts/createのアクション名を除いた(コントローラ名) 
+./microposts?page=2?になり、micropostsはPOSTとDELETEだけなのでGETを送られても表示するパスが存在していない、
+したがってstaticpagesというコントローラ名のホームに対するGETであることを明示している%>
