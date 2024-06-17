@@ -1,0 +1,18 @@
+<%= turbo_stream.update "follow_form" do %>
+    <%= render partial: "users/unfollow" %>
+<% end %>
+<%= turbo_stream.update "followers" do %>
+    <%= @user.followers.count %>
+<% end %>
+
+<%# turbo_streamによるfollowの流れ
+    ・Followボタンが_follow.html.erb内でform_withにより定義されている。
+    これにより、data-turbo="true"を明示的に指定せずとも
+    data-turbo="ture"が生成される.
+    ・turbo-streamに対応するcreate.turbo_stream.erbがない場合は
+    redirect_to @userでHTMLリクエストとしてページごとリダイレクトされる.
+    対応するファイル(このファイル)が見つかった場合はturbo-streamとして処理される.
+    ・turbo_stream.update "follow_form" do　によりCSS idがfollow_formである
+    要素に関して、テンプレートに渡された(このファイルから見れば渡した)ERBブロックを評価した値
+    (@user.followers.countとかrender partial: "users/unfollow"とかに更新する
+%>

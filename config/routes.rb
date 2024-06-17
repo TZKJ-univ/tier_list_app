@@ -9,6 +9,13 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  # /users/1/following, /users/1/followersのURLに対応
+  # following_user_path(:id), followers_user_path(:id)の名前付きルーティングに対応
   resources :users
   resources :account_activations, only: [:edit]
   ## /account_activations/:id/editがurlとして使用可能に
@@ -22,4 +29,5 @@ Rails.application.routes.draw do
   ## microposts/(:id)を利用可能になる
   get '/microposts', to: 'static_pages#home'
   ##一部のブラウザにおけるエラーを回避する(micropostsにindexなんてねえんだよって感じ)
+  resources :relationships, only: [:create, :destroy]
 end
