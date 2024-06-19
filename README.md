@@ -1,4 +1,4 @@
-# Ruby On railsチュートリアルのsample_app
+# Ruby On railsチュートリアルのsample_app改良版
 
 これは次の教材で作られたサンプルアプリケーションです。
 [*Ruby on Rails チュートリアル*](https://railstutorial.jp/)
