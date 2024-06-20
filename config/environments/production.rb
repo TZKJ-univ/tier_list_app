@@ -1,6 +1,9 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+
+  config.host << "gstonehill.xyz"
+  config.action_controller.default_url_options = { protocol: 'https', host: 'gstonehill.xyz' }
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the production environment your application's code is reloaded any time
@@ -40,7 +43,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   host = 'localhost:3000'
-  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+  config.action_mailer.default_url_options = { host: 'gstonehill.xyz', protocol: 'http' }
 
   config.action_mailer.perform_caching = false
 
