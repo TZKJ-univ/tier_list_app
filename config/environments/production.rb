@@ -42,7 +42,7 @@ Rails.application.configure do
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
-  host = 'localhost:3000'
+  host = 'gstonehill.xyz'
   config.action_mailer.default_url_options = { host: 'gstonehill.xyz', protocol: 'http' }
 
   config.action_mailer.perform_caching = false
