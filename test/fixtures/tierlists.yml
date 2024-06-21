@@ -1,0 +1,15 @@
+matsuya:
+  list: "1. Matsuya"
+  created_at: <%= 10.minutes.ago %>
+  user: michael
+
+sukiya:
+  list: "2. Sukiya"
+  created_at: <%= 20.minutes.ago %>
+  user: michael
+
+most_recent:
+  list: "3. Most Recent"
+  created_at: <%= Time.now %>
+  user: michael
+

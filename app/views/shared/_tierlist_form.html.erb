@@ -1,0 +1,7 @@
+<%= form_with(model: @tierlist) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="field">
+        <%= f.text_area :list, placeholder: "Make new tierlist ...", class: "small-textarea"%>
+    </div>
+    <%= f.submit "Make", class: "btn btn-primary small-button" %>
+<% end %>

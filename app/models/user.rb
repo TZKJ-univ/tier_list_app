@@ -1,5 +1,6 @@
 class User < ApplicationRecord
     has_many :microposts, dependent: :destroy
+    has_many :tierlists, dependent: :destroy
     has_many :active_relationships, class_name: "Relationship", 
                                     foreign_key: "follower_id", 
                                     dependent: :destroy
@@ -75,6 +76,13 @@ class User < ApplicationRecord
         Micropost.left_outer_joins(user: :followers)
                  .where(part_of_feed, { id: id }).distinct
                  .includes(:user, image_attachment: :blob)
+    end
+
+    def tierlist_feed
+        part_of_feed = "relationships.follower_id = :id or tierlists.user_id = :id"
+        Tierlist.left_outer_joins(user: :followers)
+                .where(part_of_feed, { id: id }).distinct
+                .includes(:user)
     end
 
     def follow(other_user)

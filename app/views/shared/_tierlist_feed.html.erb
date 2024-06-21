@@ -1,0 +1,7 @@
+<% if @tierlist_feed_items && @tierlist_feed_items.any? %>
+    <ol class="tierlists">
+        <%= render @tierlist_feed_items %>
+    </ol>
+    <%= will_paginate @tierlist_feed_items,
+                        params: { controller: :static_pages, action: :home} %>
+<% end %>

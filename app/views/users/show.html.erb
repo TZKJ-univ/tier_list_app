@@ -20,5 +20,12 @@
             </ol>
             <%= will_paginate @microposts%>
         <% end %>
+        <% if @user.tierlists.any? %>
+            <h3>Tierlists (<%= @user.tierlists.count %>)</h3>
+            <ol class="tierlists">
+                <%= render @tierlists %>
+            </ol>
+            <%= will_paginate @tierlists %>
+        <% end %>
     </div>
 </div>
