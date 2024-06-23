@@ -339,6 +339,7 @@ span.image {
     .content {
         display: block;
         margin-left: 60px;
+        font-size: 2em; /* フォントサイズを変更 */
         img {
             display: block;
             padding: 5px 0;
@@ -354,5 +355,23 @@ span.image {
         margin-right: 10px;
         margin-top: 5px;
     }
+}
 
+.tierlist-items {
+    list-style: none;
+    padding: 0;
+    li {
+        display: inline-block;
+        padding: 10px;
+        border: 1px solid #e8e8e8;
+        margin: 5px;
+        font-size: 1.5em; /* フォントサイズを変更 */
+    }
+    .field {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    .actions {
+        display: inline-block;
+    }
 }

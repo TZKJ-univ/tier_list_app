@@ -36,16 +36,16 @@ class TierlistsController < ApplicationController
   
     private
   
-      def set_tierlist
-        @tierlist = Tierlist.find(params[:id])
-      end
+    def set_tierlist
+      @tierlist = Tierlist.find(params[:id])
+    end
   
-      def tierlist_params
-        params.require(:tierlist).permit(:list)
-      end
+    def tierlist_params
+      params.require(:tierlist).permit(:list)
+    end
   
-      def correct_user
-        @tierlist = current_user.tierlists.find_by(id: params[:id])
-        redirect_to root_url, status: :see_other if @tierlist.nil?
-      end
+    def correct_user
+      @tierlist = current_user.tierlists.find_by(id: params[:id])
+      redirect_to root_url, status: :see_other if @tierlist.nil?
+    end
   end

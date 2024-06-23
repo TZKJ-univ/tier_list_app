@@ -1,8 +1,8 @@
-<h1>All Tierlists</h1>
+<h1>All Tier lists</h1>
 
-<ul>
+<ul class="tierlists">
   <% @tierlists.each do |tierlist| %>
-    <li id="tier list-<%= tierlist.id %>">
+    <li id="tierlist-<%= tierlist.id %>">
       <%= link_to gravatar_for(tierlist.user, size: 50), tierlist.user %>
       <span class="user"><%= link_to tierlist.user.name, tierlist.user %></span>
       <span class="content">
