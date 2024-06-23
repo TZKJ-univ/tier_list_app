@@ -24,11 +24,10 @@
       <%= form.submit "Add Item" %>
     </div>
   <% end %>
-    <% @tierlist.tierlistitems.each do |item| %>
+    <% @tierlistitems.each do |item| %>
     <% if item.id.present? %>
       <li><%= item.listitem %> (Rank: <%= item.rank %>)
-      <%= link_to "delete", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete,
-      turbo_confirm: "You sure?"} %>
+        <%= link_to "delete", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "You sure?"} %>
       </li>
     <% else %>
       <li>Error: ID is missing (Item: <%= item.listitem %>)</li>
@@ -37,9 +36,10 @@
 <% end %>
 
 <ul>
-  <% @tierlist.tierlistitems.each do |item| %>
+  <% @tierlistitems.each do |item| %>
     <% if item.id.present? %>
       <li><%= item.listitem %> (Rank: <%= item.rank %>)
+        <%= link_to "delete", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "You sure?"} %>
       </li>
     <% else %>
       <li>Error: ID is missing (Item: <%= item.listitem %>)</li>

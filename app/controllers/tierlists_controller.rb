@@ -9,6 +9,7 @@ class TierlistsController < ApplicationController
   
     def show
       @can_add_item = current_user?(@tierlist.user)
+      @tierlistitems = @tierlist.tierlistitems.order(:rank)
     end
   
     def create
