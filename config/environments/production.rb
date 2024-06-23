@@ -2,7 +2,7 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
 
-  config.host << "gstonehill.xyz"
+  config.hosts << "gstonehill.xyz"
   config.action_controller.default_url_options = { protocol: 'https', host: 'gstonehill.xyz' }
   # Settings specified here will take precedence over those in config/application.rb.
 
