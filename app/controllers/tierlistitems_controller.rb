@@ -52,7 +52,7 @@ class TierlistitemsController < ApplicationController
 
   def correct_user
     unless current_user == @tierlist.user
-      flash[:error] = "You are not authorized to perform this action."
+      flash.now[:error] = "You are not authorized to perform this action."
       redirect_to root_url
     end
   end
