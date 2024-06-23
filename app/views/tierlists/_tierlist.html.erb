@@ -2,7 +2,7 @@
     <%= link_to gravatar_for(tierlist.user, size: 50), tierlist.user %>
     <span class="user"><%= link_to tierlist.user.name, tierlist.user %></span>
     <span class="content">
-        <%= link_to "#{tierlist.list}", "#" %>
+        <%= link_to "#{tierlist.list}", tierlist_path(tierlist) %>
     </span>
     <span class="timestamp">
         Created <%= time_ago_in_words(tierlist.created_at) %> ago.

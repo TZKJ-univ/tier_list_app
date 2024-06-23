@@ -1,0 +1,28 @@
+<%= form_with(model: [@tierlist, @tierlistitem]) do |f| %>
+  <% if @tierlistitem.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger">
+        <%= pluralize(@tierlistitem.errors.count, "error") %> prohibited this tierlist item from being saved:
+      </div>
+      <ul>
+        <% @tierlistitem.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :listitem %>
+    <%= f.text_area :listitem %>
+  </div>
+
+  <div class="field">
+    <%= f.label :rank %>
+    <%= f.number_field :rank %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

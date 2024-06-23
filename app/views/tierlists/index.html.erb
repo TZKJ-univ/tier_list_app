@@ -1,0 +1,19 @@
+<h1>All Tierlists</h1>
+
+<ul>
+  <% @tierlists.each do |tierlist| %>
+    <li id="tier list-<%= tierlist.id %>">
+      <%= link_to gravatar_for(tierlist.user, size: 50), tierlist.user %>
+      <span class="user"><%= link_to tierlist.user.name, tierlist.user %></span>
+      <span class="content">
+        <%= link_to tierlist.list, tierlist_path(tierlist) %>
+      </span>
+      <span class="timestamp">
+        Created <%= time_ago_in_words(tierlist.created_at) %> ago.
+        <% if current_user?(tierlist.user) %>
+          <%= link_to "delete", tierlist, data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
+        <% end %>
+      </span>
+    </li>
+  <% end %>
+</ul>

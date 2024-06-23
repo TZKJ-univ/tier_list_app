@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'tierlistitems/new'
   get 'password_resets/new'
   get 'password_resets/edit'
   root "static_pages#home"
@@ -28,8 +29,9 @@ Rails.application.routes.draw do
   ## micropost_path(micropost) microposts_controller#destroy ... 
   ## microposts/(:id)を利用可能になる
   get '/microposts', to: 'static_pages#home'
-  get '/tierlists', to: 'static_pages#home'
   ##一部のブラウザにおけるエラーを回避する(micropostsにindexなんてねえんだよって感じ)
   resources :relationships, only: [:create, :destroy]
-  resources :tierlists, only: [:create, :destroy]
+  resources :tierlists, only: [:create, :destroy, :show, :index] do
+    resources :tierlistitems, only: [:create, :destroy, :edit, :update]
+  end
 end

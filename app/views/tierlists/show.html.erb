@@ -1,0 +1,40 @@
+<% if @can_add_item %>
+  <%= form_with(model: [@tierlist, Tierlistitem.new], local: true) do |form| %>
+    <% if form.object.errors.any? %>
+      <div id="error_explanation">
+        <div class="alert alert-danger">
+          <ul>
+            <% form.object.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :listitem %>
+      <%= form.text_field :listitem %>
+    </div>
+    <div class="field">
+      <%= form.label :rank %>
+      <%= form.number_field :rank %>
+    </div>
+    <div class="actions">
+      <%= form.submit "Add Item" %>
+    </div>
+  <% end %>
+<% end %>
+
+<ul>
+  <% @tierlist.tierlistitems.each do |item| %>
+    <% if item.id.present? %>
+      <li><%= item.listitem %> (Rank: <%= item.rank %>)
+      <%= link_to "delete", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete,
+      turbo_confirm: "You sure?"} %>
+      </li>
+    <% else %>
+      <li>Error: ID is missing (Item: <%= item.listitem %>)</li>
+    <% end %>
+  <% end %>
+</ul>
