@@ -1,6 +1,7 @@
 class TierlistitemsController < ApplicationController
   before_action :set_tierlist
   before_action :set_tierlistitem, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
     @tierlistitem = @tierlist.tierlistitems.build
@@ -47,5 +48,12 @@ class TierlistitemsController < ApplicationController
 
   def tierlistitem_params
     params.require(:tierlistitem).permit(:listitem, :rank)
+  end
+
+  def correct_user
+    unless current_user == @tierlist.user
+      flash[:error] = "You are not authorized to perform this action."
+      redirect_to root_url
+    end
   end
 end

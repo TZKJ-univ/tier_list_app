@@ -17,6 +17,8 @@
 
 、、、
 $ rails db:migrate
+$ env RAILS_ENV=production bundle exec puma -C config/puma.rb &
+
 、、、
 
 その後、テストを実行してください
