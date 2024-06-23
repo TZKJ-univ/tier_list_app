@@ -43,7 +43,7 @@ Rails.application.configure do
   config.action_mailer.raise_delivery_errors = false
 
   host = 'gstonehill.xyz'
-  config.action_mailer.default_url_options = { host: 'gstonehill.xyz', protocol: 'http' }
+  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
 
   config.action_mailer.perform_caching = false
 
