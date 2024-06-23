@@ -24,6 +24,7 @@
       <%= form.submit "Add Item" %>
     </div>
   <% end %>
+              <%= link_to "delete", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
 <% end %>
 
 <ul class="tierlist-items">
@@ -52,7 +53,6 @@
         <% items.each do |item| %>
           <li>
             <%= item.listitem %>
-            <%= link_to "delete", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
           </li>
         <% end %>
       </ul>
