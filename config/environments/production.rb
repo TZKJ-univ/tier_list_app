@@ -1,9 +1,9 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
-
   config.hosts << "gstonehill.xyz"
   config.action_controller.default_url_options = { protocol: 'https', host: 'gstonehill.xyz' }
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the production environment your application's code is reloaded any time
@@ -73,6 +73,26 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+
+  # Gmail設定
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  host = 'gstonehill.xyz'
+  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+  config.action_mailer.perform_caching = false
+
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'gstonehill.xyz',
+    user_name:            ENV['GMAIL_USERNAME'],  # 環境変数を使用
+    password:             ENV['GMAIL_PASSWORD'],  # 環境変数を使用
+    authentication:       'plain',
+    enable_starttls_auto: true
+  }
+
+  # 環境変数を読み込むための設定
+  Dotenv::Railtie.load if defined?(Dotenv)
 
   # Mailgunの設定をコメントアウト
   # config.action_mailer.raise_delivery_errors = true
