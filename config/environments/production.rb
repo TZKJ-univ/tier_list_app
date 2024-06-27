@@ -92,7 +92,9 @@ Rails.application.configure do
   }
 
   # 環境変数を読み込むための設定
-  Dotenv::Railtie.load if defined?(Dotenv)
+  # 環境変数を読み込むための設定
+  Dotenv::Rails.load if defined?(Dotenv)
+
 
   # Mailgunの設定をコメントアウト
   # config.action_mailer.raise_delivery_errors = true
