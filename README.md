@@ -1,11 +1,65 @@
-# Ruby On railsによるTier list投稿アプリケーション
+# Tier List 投稿アプリケーション
 
-##使い方
+このアプリケーションは、ユーザーがさまざまなカテゴリのTier Listを作成、共有できるWebアプリケーションです。
+以下にて公開しています。
+https://gstonehill.xyz
 
-本番環境として実行するには下記のコマンドを[RAILS_ENV=production]を含めて入力してください。
-初期化としてマスターキーの生成とパスを通す作業が必要な場合があります。
+## 機能
 
-、、、
+- ユーザー登録と認証
+- Tier Listの作成、編集、削除
+- 他のユーザーのTier Listの閲覧
+- ユーザのフォロー
+- Tier Listへのコメント機能(実装予定)
+- 人気のTier Listランキング表示(実装予定)
+
+## 使用技術
+
+- Ruby 3.2.3
+- Ruby on Rails 7.0.4.3
+- その他:関連Gemfileを参照してください
+
+## インストールと設定
+
+### 必要条件
+
+- Ruby 3.2.3
+- Rails 6.x
+- PostgreSQL
+
+### ローカル環境でのセットアップ
+
+1. リポジトリをクローンします。
+
+    ```sh
+    $ git clone https://github.com/username/tier-list-app.git
+    $ cd tier-list-app
+    ```
+
+2. 必要なGemをインストールします。
+
+    ```sh
+    $ bundle install
+    ```
+
+3. データベースをセットアップします。
+
+    ```sh
+    $ rails db:create
+    $ rails db:migrate
+    $ rails db:seed
+    ```
+
+4. サーバーを起動します。
+
+    ```sh
+    $ rails server
+    ```
+
+### 本番環境でのセットアップ
+
+本番環境で実行するには、以下のコマンドを実行してください。初期化としてマスターキーの生成とパスの設定が必要な場合があります。
+
 $ set -o errexit
 $ bundle install
 $ bundle exec rails assets:precompile RAILS_ENV=production
@@ -30,7 +84,4 @@ $ rails test
 $ rails s
 $ env RAILS_ENV=production  bundle exec puma -C config/puma.rb &
 、、、
-
-詳しくは[*Ruby On Railsチュートリアル*](https://railstutorial.jp)を参考にしてください。
-
 * Ruby version 3.2.3
