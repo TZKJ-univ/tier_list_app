@@ -19,14 +19,6 @@ https://gstonehill.xyz
 - Ruby on Rails 7.0.4.3
 - その他:関連Gemfileを参照してください
 
-## インストールと設定
-
-### 必要条件
-
-- Ruby 3.2.3
-- Rails 6.x
-- PostgreSQL
-
 ### ローカル環境でのセットアップ
 
 1. リポジトリをクローンします。
