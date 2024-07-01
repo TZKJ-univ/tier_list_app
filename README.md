@@ -17,7 +17,7 @@ https://gstonehill.xyz
 
 - Ruby 3.2.3
 - Ruby on Rails 7.0.4.3
-- その他:関連Gemfileを参照してください
+- その他:関連Gemfileをご参照してください
 
 ### ローカル環境でのセットアップ
 
