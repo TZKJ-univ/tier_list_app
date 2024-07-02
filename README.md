@@ -51,32 +51,33 @@ https://gstonehill.xyz
 ### 本番環境でのセットアップ
 
 本番環境で実行するには、以下のコマンドを実行してください。初期化としてマスターキーの生成とパスの設定が必要な場合があります。
-、、、
+
+```sh
 $ set -o errexit
-、、、
-、、、
+```
+```sh
 $ bundle install
-、、、
+```
 $ bundle exec rails assets:precompile RAILS_ENV=production
-、、、
-、、、
+```
+```sh
 $ bundle exec rails assets:clean RAILS_ENV=production
-、、、
-、、、
+```
+```sh
 $ bundle exec rails db:migrate RAILS_ENV=production
-、、、
+```
 
 サンプルユーザが必要な方は下記を実行してください(本番環境での実行は推奨いたしません。)
 
-、、、
+```sh
 $ bundle exec rails db:seed
-、、、
+```
 
 その後、テストを実行してください
 
-、、、
+```
 $ rails test
-、、、
+```
 
 開発環境の場合は下記１行目、本番環境の場合は２行目を実行してください
 、、、
