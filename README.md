@@ -51,11 +51,18 @@ https://gstonehill.xyz
 ### 本番環境でのセットアップ
 
 本番環境で実行するには、以下のコマンドを実行してください。初期化としてマスターキーの生成とパスの設定が必要な場合があります。
-
+、、、
 $ set -o errexit
+、、、
+、、、
 $ bundle install
+、、、
 $ bundle exec rails assets:precompile RAILS_ENV=production
+、、、
+、、、
 $ bundle exec rails assets:clean RAILS_ENV=production
+、、、
+、、、
 $ bundle exec rails db:migrate RAILS_ENV=production
 、、、
 
@@ -74,6 +81,8 @@ $ rails test
 開発環境の場合は下記１行目、本番環境の場合は２行目を実行してください
 、、、
 $ rails s
+、、、
+、、、
 $ env RAILS_ENV=production  bundle exec puma -C config/puma.rb &
 、、、
 * Ruby version 3.2.3
