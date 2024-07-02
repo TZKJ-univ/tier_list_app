@@ -41,7 +41,9 @@ RSpec.describe User, type: :model do
     expect(user.errors[:email]).to include("has already been taken")
   end
 
-  it "is invalid without a password"
-
-  it "returns a user's full name as a string"
+  it "is invalid without a password" do
+    user = User.new(password: nil)
+    user.valid?
+    expect(user.errors[:password]).to include("can't be blank")
+  end
 end
