@@ -11,5 +11,9 @@ FactoryBot.define do
     trait :created_tommorow do
       created_at { Time.zone.now + 1.day }
     end
+
+    trait :with_tierlistitems do
+      after(:create) { |tierlist| create_list(:tierlistitem, 3, tierlist: tierlist) }
+    end
   end
 end

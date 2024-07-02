@@ -55,3 +55,10 @@ describe "create date" do
     expect(tierlist1.created_at).to_not eq(tierlist2.created_at)
   end
 end
+
+describe "tierlistitem" do
+  it "can have many tierlistitems" do
+    tierlist = FactoryBot.create(:tierlist, :with_tierlistitems)
+    expect(tierlist.tierlistitems.count).to eq(3)
+  end
+end
