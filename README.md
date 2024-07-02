@@ -54,16 +54,9 @@ https://gstonehill.xyz
 
 ```sh
 $ set -o errexit
-```
-```sh
 $ bundle install
-```
 $ bundle exec rails assets:precompile RAILS_ENV=production
-```
-```sh
 $ bundle exec rails assets:clean RAILS_ENV=production
-```
-```sh
 $ bundle exec rails db:migrate RAILS_ENV=production
 ```
 
