@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Tierlistitem, type: :model do
+
+  it "generates associated tierlistitem from a factory" do
+    tierlistitem = FactoryBot.create(:tierlistitem)
+    puts "This is the associated #{tierlistitem.tierlist.inspect}"
+  end
   
   it "does not allow duplicate tierlistitem names per tierlist" do
     user = User.create(
