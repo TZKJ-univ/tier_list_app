@@ -73,10 +73,10 @@ $ rails test
 ```
 
 開発環境の場合は下記１行目、本番環境の場合は２行目を実行してください
-、、、
+```sh
 $ rails s
-、、、
-、、、
+```
+```sh
 $ env RAILS_ENV=production  bundle exec puma -C config/puma.rb &
-、、、
+```
 * Ruby version 3.2.3
