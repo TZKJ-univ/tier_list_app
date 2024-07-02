@@ -8,12 +8,7 @@ RSpec.describe Tierlistitem, type: :model do
   end
   
   it "does not allow duplicate tierlistitem names per tierlist" do
-    user = User.create(
-      name: "Aaron",
-      email: "tester@example.com",
-      password: "password",
-      password_confirmation: "password"
-    )
+    user = FactoryBot.create(:user)
 
     tierlist = user.tierlists.create(
       list: "Tierlist 1"

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tierlistitem do
-    listitem { "Tierlistitem 1" }
+    sequence(:listitem) { |n| "Tierlistitem #{n}" }
     rank { 1 }
     association :tierlist
   end
