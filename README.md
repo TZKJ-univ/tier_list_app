@@ -34,10 +34,21 @@ https://gstonehill.xyz
     $ docker compose build
     ```
 
-3. webサービスコンテナ内でデータベースをセットアップします。
+3. webサービスコンテナ内に入ります。
 
     ```sh
-    $ docker compose run web rails db:create db:migrate db:seed
+    $ docker compose up -d
+    $ docker compose exec web bash
+    ```
+
+
+4. webサービスコンテナ内でデータベースをセットアップします。
+
+    ```sh
+    $ rails db:create
+    $ rails db:migrate
+    $ rails db:seed
+    $ exit
     ```
 
 初回起動時以外は次のコマンドで実行可能です。
