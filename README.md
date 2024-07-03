@@ -28,24 +28,27 @@ https://gstonehill.xyz
     $ cd tier-list-app
     ```
 
-2. 必要なGemをインストールします。
+2. dockerコンテナをビルドします。
 
     ```sh
-    $ bundle install
+    $ docker compose build
     ```
 
-3. データベースをセットアップします。
+3. webサービスコンテナ内でデータベースをセットアップします。
 
     ```sh
-    $ rails db:create
-    $ rails db:migrate
-    $ rails db:seed
+    $ docker compose run web rails db:create db:migrate db:seed
     ```
 
-4. サーバーを起動します。
+初回起動時以外は次のコマンドで実行可能です。
 
     ```sh
-    $ rails server
+    $ docker compose up -d
+    ```
+    
+開発環境の使用をしないときは次のコマンドでコンテナを停止・削除してください。
+    ```sh
+    $ docker compose down
     ```
 
 ### 本番環境でのセットアップ
