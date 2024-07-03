@@ -17,6 +17,8 @@ https://gstonehill.xyz
 
 - Ruby 3.2.3
 - Ruby on Rails 7.0.4.3
+- docker 26.1.1
+- docker compose 2.27.0
 - その他:関連Gemfileをご参照してください
 
 ### ローカル環境でのセットアップ
