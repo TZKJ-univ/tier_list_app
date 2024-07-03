@@ -26,38 +26,45 @@
   <% end %>
 <% end %>
 
-<ul class="tierlist-items">
-  <% @tierlistitems.group_by(&:rank).each do |rank, items| %>
-    <li>
-      <strong>
-        Rank: 
-        <% case rank %>
-        <% when 1 %>
-          S
-        <% when 2 %>
-          A
-        <% when 3 %>
-          B
-        <% when 4 %>
-          C
-        <% when 5 %>
-          D
-        <% when 6 %>
-          E
-        <% else %>
-          <%= rank %>
-        <% end %>
-      </strong>
-      <ul>
-        <% items.each do |item| %>
-          <li>
-            <%= item.listitem %>
-            <% if @can_add_item %>
-              <%= link_to "削除", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
+<table class="tierlist-table">
+  <thead>
+  </thead>
+  <tbody>
+    <% @tierlistitems.group_by(&:rank).each do |rank, items| %>
+      <tr class="rank-<%= rank %>">
+        <td>
+          <strong>
+            <% case rank %>
+            <% when 1 %>
+              S
+            <% when 2 %>
+              A
+            <% when 3 %>
+              B
+            <% when 4 %>
+              C
+            <% when 5 %>
+              D
+            <% when 6 %>
+              E
+            <% else %>
+              <%= rank %>
             <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </li>
-  <% end %>
-</ul>
+          </strong>
+        </td>
+        <td>
+          <ul class="tierlist-items-inline">
+            <% items.each do |item| %>
+              <li>
+                <%= item.listitem %>
+                <% if @can_add_item %>
+                  <%= link_to "削除", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -375,4 +375,68 @@ span.image {
 //     .actions {
 //         display: inline-block;
 //     }
-// }
+// }    
+.tierlist-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: black; /* テーブル全体の背景色を黒に設定 */
+    color: black; /* テーブル内のテキストカラーを白に設定 */
+  }
+  
+  .tierlist-table th, .tierlist-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    line-height: 1.6; /* 行間を少し広げる */
+  }
+  
+  .tierlist-table th {
+    background-color: #f4f4f4;
+    font-size: 1.2em;
+    color: black; /* ヘッダーのテキストカラーを黒に設定 */
+  }
+  
+  .tierlist-items-inline {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .tierlist-items-inline li {
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f9f9f9; /* アイテムの背景色を設定 */
+    font-size: 1.2em;
+    color: black; /* アイテムのテキストカラーを黒に設定 */
+    line-height: 1.6; /* 行間を少し広げる */
+  }
+  
+  /* ランクごとの色設定 */
+  .rank-1 td:first-child {
+    background-color: #ff9999; /* S rank: 赤 */
+  }
+  
+  .rank-2 td:first-child {
+    background-color: #ffcc99; /* A rank: オレンジ */
+  }
+  
+  .rank-3 td:first-child {
+    background-color: #ffff99; /* B rank: 黄 */
+  }
+  
+  .rank-4 td:first-child {
+    background-color: #ccff99; /* C rank: ライトグリーン */
+  }
+  
+  .rank-5 td:first-child {
+    background-color: #99ccff; /* D rank: 青 */
+  }
+  
+  .rank-6 td:first-child {
+    background-color: #cc99ff; /* E rank: 紫 */
+  }
