@@ -13,13 +13,17 @@
     </aside>
     <div class="col-md-8">
         <%= render 'follow_form' if logged_in? %>
-        <% if @user.microposts.any? %>
+        <%
+=begin%>
+ <% if @user.microposts.any? %>
             <h3>Microposts (<%= @user.microposts.count %>)</h3>
             <ol class="microposts">
                 <%= render @microposts %>
             </ol>
             <%= will_paginate @microposts%>
-        <% end %>
+        <% end %> 
+<%
+=end%>
         <% if @user.tierlists.any? %>
             <h3>Tierlists (<%= @user.tierlists.count %>)</h3>
             <ol class="tierlists">

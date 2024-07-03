@@ -1,4 +1,4 @@
-<h1>All Tier lists</h1>
+<h1>Tier lists</h1>
 
 <ul class="tierlists">
   <% @tierlists.each do |tierlist| %>
@@ -9,9 +9,10 @@
         <%= link_to tierlist.list, tierlist_path(tierlist) %>
       </span>
       <span class="timestamp">
-        Created <%= time_ago_in_words(tierlist.created_at) %> ago.
+        <%= time_ago_in_words(tierlist.created_at) %> ago.
         <% if current_user?(tierlist.user) %>
-          <%= link_to "delete", tierlist, data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
+          <%= link_to "delete", tierlist, 
+          data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
         <% end %>
       </span>
     </li>
