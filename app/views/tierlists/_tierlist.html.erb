@@ -5,7 +5,7 @@
         <%= link_to "#{tierlist.list}", tierlist_path(tierlist) %>
     </span>
     <span class="timestamp">
-        Created <%= time_ago_in_words(tierlist.created_at) %> ago.
+        <%= time_ago_in_words(tierlist.created_at) %> ago.
         <% if current_user?(tierlist.user)%>
             <%= link_to "delete", tierlist, data: { "turbo-method": :delete,
                                                     turbo_confirm: "You sure?"} %>

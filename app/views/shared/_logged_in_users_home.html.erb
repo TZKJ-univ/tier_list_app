@@ -9,14 +9,22 @@
         <section class="tierlist_form">
             <%= render 'shared/tierlist_form' %>
         </section>
-        <section class="micropost_form">
+        <%
+=begin%>
+ <section class="micropost_form">
             <%= render 'shared/micropost_form' %>
-        </section>
+        </section> 
+<%
+=end%>
     </aside>
     <div class="col-md-8">
-        <h3>Micropost Feed</h3>
-        <%= render 'shared/feed' %>
-        <h3>Tierlist Feed</h3>
+        <%
+=begin%>
+ <h3>Micropost Feed</h3>
+        <%= render 'shared/feed' %> 
+<%
+=end%>
+        <h3>Tier lists</h3>
         <%= render 'shared/tierlist_feed' %>
     </div>
 </div>

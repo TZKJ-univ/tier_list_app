@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   get '/microposts', to: 'static_pages#home'
   ##一部のブラウザにおけるエラーを回避する(micropostsにindexなんてねえんだよって感じ)
   resources :relationships, only: [:create, :destroy]
-  resources :tierlists, only: [:create, :destroy, :show, :index] do
+  resources :tierlists, only: [:create, :destroy, :show, :index, :new] do
     resources :tierlistitems, only: [:create, :destroy, :edit, :update]
   end
 end
