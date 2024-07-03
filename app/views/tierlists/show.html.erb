@@ -13,12 +13,12 @@
     <% end %>
 
     <div class="field">
-      <%= form.label :listitem %>
+      <%= form.label "追加アイテム" %>
       <%= form.text_field :listitem %>
     </div>
     <div class="field">
-      <%= form.label :rank %>
-      <%= form.number_field :rank %>
+      <%= form.label "TIERを選択" %>
+      <%= form.select :rank, options_for_select([['S', 1], ['A', 2], ['B', 3], ['C', 4], ['D', 5], ['E', 6]]) %>
     </div>
     <div class="actions">
       <%= form.submit "追加" %>
@@ -53,7 +53,7 @@
           <li>
             <%= item.listitem %>
             <% if @can_add_item %>
-              <%= link_to "削除", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
+              <%= link_to "削除", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
             <% end %>
           </li>
         <% end %>

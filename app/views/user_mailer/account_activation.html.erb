@@ -1,10 +1,29 @@
-<h1>Tier list App</h1>
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tier List アプリ - アカウント有効化</title>
+</head>
+<body>
+  <h1>Tier List アプリ</h1>
 
-<p>Hi <%= @user.name %>,</p>
+  <p><%= @user.name %>さん、</p>
 
-<p>
-Welcome to the Tier list App! Click on the link below to activate your account:
-</p>
+  <p>
+    Tier List アプリへようこそ！アカウントを有効化するには、以下のリンクをクリックしてください：
+  </p>
 
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
-                                                    email: @user.email)%>
+  <p>
+    <%= link_to "アカウントを有効化", 
+    edit_account_activation_url(@user.activation_token,
+    email: @user.email) %>
+  </p>
+
+  <p>
+    このリンクは一度しか使用できませんので、ご注意ください。
+  </p>
+
+  <p>
+    今後ともTier List アプリをよろしくお願いいたします。
+  </p>
+</body>
+</html>
