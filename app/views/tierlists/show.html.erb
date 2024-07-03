@@ -13,50 +13,17 @@
     <% end %>
 
     <div class="field">
-      <%= form.label :listitem %>
+      <%= form.label "追加アイテム" %>
       <%= form.text_field :listitem %>
     </div>
     <div class="field">
-      <%= form.label :rank %>
-      <%= form.number_field :rank %>
+      <%= form.label "TIERを選択" %>
+      <%= form.select :rank, options_for_select([['S', 1], ['A', 2], ['B', 3], ['C', 4], ['D', 5], ['E', 6]]) %>
     </div>
     <div class="actions">
-      <%= form.submit "Add Item" %>
+      <%= form.submit "追加" %>
     </div>
   <% end %>
-  <ul class="tierlist-items">
-  <% @tierlistitems.group_by(&:rank).each do |rank, items| %>
-    <li>
-      <strong>
-        Rank: 
-        <% case rank %>
-        <% when 1 %>
-          S
-        <% when 2 %>
-          A
-        <% when 3 %>
-          B
-        <% when 4 %>
-          C
-        <% when 5 %>
-          D
-        <% when 6 %>
-          E
-        <% else %>
-          <%= rank %>
-        <% end %>
-      </strong>
-      <ul>
-        <% items.each do |item| %>
-          <li>
-            <%= item.listitem %>
-            <%= link_to "delete", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
-          </li>
-        <% end %>
-      </ul>
-    </li>
-  <% end %>
-</ul>
 <% end %>
 
 <ul class="tierlist-items">
@@ -85,6 +52,9 @@
         <% items.each do |item| %>
           <li>
             <%= item.listitem %>
+            <% if @can_add_item %>
+              <%= link_to "削除", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
+            <% end %>
           </li>
         <% end %>
       </ul>

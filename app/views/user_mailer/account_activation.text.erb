@@ -1,5 +1,9 @@
-Hi <%= @user.name %>,
+<%= @user.name %>さん、
 
-Welcome to the Tier list App! Click on the link below to activate your account:
+Tier List アプリへようこそ！アカウントを有効化するには、以下のリンクをクリックしてください：
 
-<%= edit_account_activation_url(@user.activation_token, email: @user.email)%>
+<%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
+
+このリンクは一度しか使用できませんので、ご注意ください。
+
+今後ともTier List アプリをよろしくお願いいたします。
