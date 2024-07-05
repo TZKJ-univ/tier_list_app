@@ -21,7 +21,7 @@
       <%= form.select :rank, options_for_select([['S', 1], ['A', 2], ['B', 3], ['C', 4], ['D', 5], ['E', 6]]) %>
     </div>
     <div class="actions">
-      <%= form.submit "追加" %>
+      <%= form.submit "追加", id: "submit_button", disabled: true %>
     </div>
   <% end %>
 <% end %>
