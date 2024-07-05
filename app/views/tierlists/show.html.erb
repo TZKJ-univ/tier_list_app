@@ -27,12 +27,6 @@
 <% end %>
 
 <table class="tierlist-table">
-  <thead>
-    <tr>
-      <th>Rank</th>
-      <th>Items</th>
-    </tr>
-  </thead>
   <tbody>
     <% @tierlistitems&.group_by(&:rank)&.each do |rank, items| %>
       <tr class="rank-<%= rank %>">
