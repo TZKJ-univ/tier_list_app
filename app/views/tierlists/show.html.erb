@@ -14,7 +14,7 @@
 
     <div class="field">
       <%= form.label "追加アイテム" %>
-      <%= form.text_field :listitem %>
+      <%= form.text_field :listitem, id: "listitem_field" %>
     </div>
     <div class="field">
       <%= form.label "TIERを選択" %>
@@ -28,9 +28,13 @@
 
 <table class="tierlist-table">
   <thead>
+    <tr>
+      <th>Rank</th>
+      <th>Items</th>
+    </tr>
   </thead>
   <tbody>
-    <% @tierlistitems.group_by(&:rank).each do |rank, items| %>
+    <% @tierlistitems&.group_by(&:rank)&.each do |rank, items| %>
       <tr class="rank-<%= rank %>">
         <td>
           <strong>
@@ -68,3 +72,17 @@
     <% end %>
   </tbody>
 </table>
+
+<script>
+  document.addEventListener("turbo:load", function() {
+    const listitemField = document.getElementById("listitem_field");
+    const submitButton = document.getElementById("submit_button");
+
+    function toggleSubmitButton() {
+      submitButton.disabled = !listitemField.value.trim();
+    }
+
+    listitemField.addEventListener("input", toggleSubmitButton);
+    toggleSubmitButton(); // 初期ロード時にボタンの状態を設定
+  });
+</script>
