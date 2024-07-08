@@ -331,6 +331,8 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     shellany (0.0.1)
+    shoulda-matchers (6.2.0)
+      activesupport (>= 5.2.0)
     solargraph (0.50.0)
       backport (~> 1.2)
       benchmark
@@ -424,6 +426,7 @@ DEPENDENCIES
   rspec-rails
   sassc-rails (= 2.1.2)
   selenium-webdriver
+  shoulda-matchers
   solargraph (= 0.50.0)
   sprockets-rails (= 3.4.2)
   sqlite3 (= 1.6.1)
