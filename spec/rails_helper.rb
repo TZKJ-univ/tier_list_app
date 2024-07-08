@@ -58,6 +58,10 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include SessionHelpers, type: :request
+  # テストスイートの実行が終わったらアップロードされたファイルを削除する 
+  config.after(:suite) do
+    FileUtils.rm_rf(ActiveStorage::Blob.service.root)
+  end
 end
 
 Shoulda::Matchers.configure do |config| config.integrate do |with|
