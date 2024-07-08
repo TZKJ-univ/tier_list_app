@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :request do
     let(:user) { FactoryBot.create(:user) }
+    let!(:tierlist) { FactoryBot.create(:tierlist, user: user,) }
+    let(:other_user) { FactoryBot.create(:user) }
 
     before do
       log_in_as(user)
@@ -21,36 +23,26 @@ RSpec.describe UsersController, type: :request do
 
     describe "#destroy" do
         context "as an authorized user" do
-            before do
-                @tierlist = FactoryBot.create(:tierlist, user: user, 
-                list: "Test List")
-            end
-
             it "deletes a tierlist" do
                 log_in_as user
                 expect {
-                    delete tierlist_path(@tierlist)
+                    delete tierlist_path(tierlist)
                 }.to change(Tierlist, :count).by(-1)
             end
         end
 
         context "as an unauthorized user" do
-            before do
-                other_user = FactoryBot.create(:user)
-                @tierlist = FactoryBot.create(:tierlist, user: other_user, 
-                list: "Test List")
-            end
     
             it "does not delete the tierlist" do
-                log_in_as user   
+                log_in_as other_user 
                 expect {
-                    delete tierlist_path(@tierlist)
+                    delete tierlist_path(tierlist)
                 }.to_not change(Tierlist, :count)
             end
     
             it "redirect to the root url" do
-                log_in_as user
-                delete tierlist_path(@tierlist)
+                log_in_as other_user
+                delete tierlist_path(tierlist)
                 expect(response).to redirect_to root_url
             end
         end

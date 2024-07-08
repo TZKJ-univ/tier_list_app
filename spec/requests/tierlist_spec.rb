@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Tierlists", type: :request do
+    let (:tierlist) { FactoryBot.create(:tierlist) }
     # ユーザーがログインしている場合
     context "when a user is logged in" do
         before do
