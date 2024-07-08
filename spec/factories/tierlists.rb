@@ -15,5 +15,9 @@ FactoryBot.define do
     trait :with_tierlistitems do
       after(:create) { |tierlist| create_list(:tierlistitem, 3, tierlist: tierlist) }
     end
+
+    trait :invalid do
+      list { nil }
+    end
   end
 end

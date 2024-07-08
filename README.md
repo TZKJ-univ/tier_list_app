@@ -85,6 +85,7 @@ $ bundle exec rails db:seed
 
 ```
 $ rails test
+$ bin/rspec
 ```
 
 開発環境の場合は下記１行目、本番環境の場合は２行目を実行してください
