@@ -2,17 +2,19 @@ require 'rails_helper'
 
 RSpec.describe Tierlistitem, type: :model do
 
+  let(:tierlist) { FactoryBot.create(:tierlist) }
+  let(:user) { FactoryBot.create(:user) }
+
   it "generates associated tierlistitem from a factory" do
-    tierlistitem = FactoryBot.create(:tierlistitem)
-    puts "This is the associated #{tierlistitem.tierlist.inspect}"
+
+    tierlistitem = tierlist.tierlistitems.new(
+      listitem: "Tierlistitem 1",
+      rank: 1
+    )
+    expect(tierlistitem.tierlist).to be_valid
   end
   
   it "does not allow duplicate tierlistitem names per tierlist" do
-    user = FactoryBot.create(:user)
-
-    tierlist = user.tierlists.create(
-      list: "Tierlist 1"
-    )
 
     tierlist.tierlistitems.create(
       listitem: "Tierlistitem 1",

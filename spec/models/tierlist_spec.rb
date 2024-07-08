@@ -1,9 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Tierlist, type: :model do
+  let(:user) { FactoryBot.create(:user) }
+  let(:tierlist) { FactoryBot.create(:tierlist) }
+  let(:tierlist1) { FactoryBot.create(:tierlist, :created_yesterday) }
+  let(:tierlist2) { FactoryBot.create(:tierlist, :created_tommorow) }
   
   it "does not allow duplicate tierlist names per user" do
-    user = FactoryBot.create(:user)
 
     user.tierlists.create(
       list: "Tierlist 1"
@@ -41,24 +44,21 @@ RSpec.describe Tierlist, type: :model do
 
     expect(user2_tierlist).to be_valid
   end
-end
 
-describe "create date" do
-  it "have a create date" do
-    tierlist = FactoryBot.create(:tierlist)
-    expect(tierlist.created_at).to_not eq(nil)
+  describe "create date" do
+    it "have a create date" do
+      expect(tierlist.created_at).to_not eq(nil)
+    end
+
+    it "does make different create dates" do
+      expect(tierlist1.created_at).to_not eq(tierlist2.created_at)
+    end
   end
 
-  it "does make different create dates" do
-    tierlist1 = FactoryBot.create(:tierlist, :created_yesterday)
-    tierlist2 = FactoryBot.create(:tierlist, :created_tommorow)
-    expect(tierlist1.created_at).to_not eq(tierlist2.created_at)
-  end
-end
-
-describe "tierlistitem" do
-  it "can have many tierlistitems" do
-    tierlist = FactoryBot.create(:tierlist, :with_tierlistitems)
-    expect(tierlist.tierlistitems.count).to eq(3)
+  describe "tierlistitem" do
+    it "can have many tierlistitems" do
+      tierlist = FactoryBot.create(:tierlist, :with_tierlistitems)
+      expect(tierlist.tierlistitems.count).to eq(3)
+    end
   end
 end

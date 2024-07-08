@@ -5,11 +5,7 @@ RSpec.describe "Tierlists", type: :system do
   scenario "creating a new tierlist", js: true do
     user = FactoryBot.create(:user)
 
-    visit root_path
-    click_link "ログイン"
-    fill_in "Email", with: user.email
-    fill_in "パスワード", with: user.password
-    click_button "ログイン"
+    log_in user
     expect(page).to have_content "following"
     visit root_path
     
