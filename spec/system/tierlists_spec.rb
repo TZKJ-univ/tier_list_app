@@ -23,4 +23,17 @@ RSpec.describe "Tierlists", type: :system do
     expect(page).to have_content "Please log in."
   end
 
+  scenario "user delete tierlist" do
+    user = FactoryBot.create(:user)
+    tierlist = FactoryBot.create(:tierlist, user: user)
+
+    log_in user
+    visit root_path
+
+    expect {
+      click_link "delete"
+      expect(page).to have_content "Tierlist deleted"
+    }.to change(Tierlist, :count).by(-1)
+  end
+
 end
