@@ -16,6 +16,7 @@
                 <li><%= link_to "Tier lists一覧", tierlists_path %></li>
                 <% if logged_in? %>
                     <li><%= link_to "ユーザ", users_path %></li>
+                    <li><%= link_to "Tier list作成", new_tierlist_path %></li>
                     <li class="dropdown" >
                         <a href="#" id ="account" class="dropdown-toggle" >
                             アカウント <b class="caret" ></b>

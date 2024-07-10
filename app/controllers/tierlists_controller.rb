@@ -2,7 +2,11 @@ class TierlistsController < ApplicationController
     before_action :logged_in_user, only: [:create, :destroy]
     before_action :correct_user, only: :destroy
     before_action :set_tierlist, only: [:show, :destroy]
-  
+
+    def new
+      @tierlist = Tierlist.new
+    end
+
     def index
       @tierlists = Tierlist.all
     end
