@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
         reset_session
         params[:session][:remember_me] == '1' ? remember(@user) : forget(@user)
         log_in(@user)
-        redirect_to forwarding_url || @user
+        redirect_to forwarding_url || new_tierlist_path, status: :see_other
       else
         message = "Account not activated!"
         message += "Check your email for the activation link."
@@ -27,5 +27,16 @@ class SessionsController < ApplicationController
   def destroy
     log_out if logged_in?
     redirect_to root_url, status: :see_other
+  end
+
+  def create_guest
+    user = User.create_guest_user
+    if user.persisted?
+      session[:user_id] = user.id
+      session[:session_token] = user.session_token
+      redirect_to new_tierlist_path, notice: 'ゲストユーザーとしてログインしました。'
+    else
+      redirect_to root_path, alert: 'ゲストユーザーの作成に失敗しました。'
+    end
   end
 end
