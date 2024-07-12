@@ -97,6 +97,19 @@ class User < ApplicationRecord
         following.include?(other_user)
     end
 
+    def self.create_guest_user
+        guest_email = "guest_#{Time.now.to_i}#{rand(100)}@example.com"
+        guest_name = "guest_#{Time.now.to_i}#{rand(100)}"
+        password = SecureRandom.urlsafe_base64
+        user = new(email: guest_email, name: guest_name, password: password, password_confirmation: password, activated: true, activated_at: Time.zone.now, deletion_time: 24.hours.from_now)
+        if user.save
+          DeleteGuestUserJob.set(wait_until: user.deletion_time).perform_later(user.id)
+        else
+          Rails.logger.error("Failed to create guest user: #{user.errors.full_messages.join(", ")}")
+        end
+        user
+    end
+
     private
 
         def downcase_email
