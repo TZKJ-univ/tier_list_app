@@ -13,7 +13,7 @@ FactoryBot.define do
     end
 
     trait :with_tierlistitems do
-      after(:create) { |tierlist| create_list(:tierlistitem, 3, tierlist: tierlist) }
+      after(:create) { |tierlist| create_list(:tierlistitem, 3, tierlist:) }
     end
 
     trait :invalid do
