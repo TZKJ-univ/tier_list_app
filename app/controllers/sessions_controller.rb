@@ -1,7 +1,5 @@
 class SessionsController < ApplicationController
-
-  def new
-  end
+  def new; end
 
   def create
     @user = User.find_by(email: params[:session][:email].downcase)
@@ -13,8 +11,8 @@ class SessionsController < ApplicationController
         log_in(@user)
         redirect_to forwarding_url || new_tierlist_path, status: :see_other
       else
-        message = "Account not activated!"
-        message += "Check your email for the activation link."
+        message = 'Account not activated!'
+        message += 'Check your email for the activation link.'
         flash[:warning] = message
         redirect_to root_url
       end

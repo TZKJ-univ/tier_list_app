@@ -7,6 +7,6 @@ class CreateTierlistitems < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_index :tierlistitems, [:tierlist_id, :created_at]
+    add_index :tierlistitems, %i[tierlist_id created_at]
   end
 end
