@@ -1,12 +1,21 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@font-face {
+    font-family: "onryou";
+    src: url('onryou.TTF') format('truetype');
+  }
 
 $light-gray: #777;
-$gray-midium-light: #eaeaea;
+/*$gray-midium-light: #eaeaea;*/
+$gray-midium-light: #ffff00;
 
 body {
     padding-top: 60px;
-    background-color: #fffeee;
+    font-family: 'onryou';
+    color: red;
+    background-image: url('wagara.jpg');
+    background-size: cover;
+    opacity: 1;
 }
 
 section {
@@ -22,6 +31,11 @@ textarea {
     h1 {
         margin-bottom: 10px;
     }
+    background-color: #000000;
+}
+
+.tierliststitle{
+    background-color: #000000;
 }
 
 /* typography */
@@ -72,10 +86,13 @@ p {
 footer {
     margin-top: 45px;
     padding-top: 5px;
-    border-top: 1px solid $gray-midium-light;
+    // border-top: 1px solid $gray-midium-light;
     color: $gray-light;
+    font-size: large;
     a {
-        color: $gray;
+        // color: $gray;
+        color: #ff0000;
+        background-color: #000000;
         &:hover{
             color: $gray-darker;
         }
