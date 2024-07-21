@@ -2,6 +2,7 @@ class TierlistsController < ApplicationController
   before_action :logged_in_user, only: %i[create destroy]
   before_action :set_tierlist, only: %i[show destroy edit update]
   before_action :check_edit_permission, only: %i[edit update destroy update]
+  before_action :correct_user, only: %i[destroy]
 
   def new
     @tierlist = Tierlist.new
