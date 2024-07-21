@@ -4,6 +4,8 @@ class DeleteGuestUserJob < ApplicationJob
 
   def perform(user_id)
     user = User.find_by(id: user_id)
-    user.destroy if user && user.guest? # ゲストユーザーであるか確認して削除
+    if user && user.guest? && user.tier_lists.empty?
+      user.destroy
+    end
   end
 end
