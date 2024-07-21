@@ -467,7 +467,7 @@ span.image {
 .tierlist-table.thumbnail {
   font-size: 0.6em; /* Smaller font size */
   width: 100%;
-  max-width: 300px; /* Smaller max width */
+  max-width: max-content; /* Smaller max width */
   margin: 0;
   padding: 0;
   border-collapse: collapse;
