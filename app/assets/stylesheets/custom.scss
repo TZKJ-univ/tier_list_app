@@ -462,3 +462,47 @@ span.image {
   .rank-6 td:first-child {
     background-color: #cc99ff; /* E rank: 紫 */
   }
+
+/* tierlistサムネイル */
+.tierlist-table.thumbnail {
+  font-size: 0.6em; /* Smaller font size */
+  width: 100%;
+  max-width: 300px; /* Smaller max width */
+  margin: 0;
+  padding: 0;
+  border-collapse: collapse;
+}
+
+.tierlist-table.thumbnail ul.tierlist-items-inline {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tierlist-table.thumbnail ul.tierlist-items-inline li {
+  display: inline-block;
+  margin-right: 3px; /* Smaller margin */
+}
+
+.tierlist-table.thumbnail td {
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+.tierlist-table.thumbnail strong {
+  display: block;
+  margin-bottom: 3px; /* Smaller margin */
+}
+
+.tierlists {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}
+
+.tierlists li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

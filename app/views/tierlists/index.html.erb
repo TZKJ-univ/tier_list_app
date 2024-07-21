@@ -1,7 +1,5 @@
-<div class="tierliststitle">
-  <h1>Tier lists</h1>
-</div>
-
+<% provide(:title, "ティアリスト一覧") %>
+<h1>ティアリスト一覧</h1>
 <ul class="tierlists">
   <% @tierlists.each do |tierlist| %>
     <li id="tierlist-<%= tierlist.id %>">
@@ -9,6 +7,49 @@
       <span class="user"><%= link_to tierlist.user.name, tierlist.user %></span>
       <span class="content">
         <%= link_to tierlist.list, tierlist_path(tierlist) %>
+        <!-- サムネイル画像の表示 -->
+        <div class="thumbnail-container">
+          <table class="tierlist-table thumbnail">
+            <tbody>
+              <% tierlist.tierlistitems&.group_by(&:rank)&.each do |rank, items| %>
+                <tr class="rank-<%= rank %>">
+                  <td>
+                    <strong>
+                      <% case rank %>
+                      <% when 1 %>
+                        S
+                      <% when 2 %>
+                        A
+                      <% when 3 %>
+                        B
+                      <% when 4 %>
+                        C
+                      <% when 5 %>
+                        D
+                      <% when 6 %>
+                        E
+                      <% else %>
+                        <%= rank %>
+                      <% end %>
+                    </strong>
+                  </td>
+                  <td>
+                    <ul class="tierlist-items-inline">
+                      <% items.each do |item| %>
+                        <li>
+                          <%= item.listitem %>
+                          <% if @can_add_item %>
+                            <%= link_to "削除", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
+                          <% end %>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </span>
       <span class="timestamp">
         <%= time_ago_in_words(tierlist.created_at) %> ago.
