@@ -2,10 +2,11 @@
 class DeleteGuestUserJob < ApplicationJob
   queue_as :default
 
-  def perform(user_id)
-    user = User.find_by(id: user_id)
-    if user && user.guest? && user.tier_lists.empty?
-      user.destroy
+  def perform
+    User.find_each do |user|
+      if user.guest? && user.tierlists.empty?
+        user.destroy
+      end
     end
   end
 end
