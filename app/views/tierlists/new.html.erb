@@ -8,6 +8,11 @@
             <%= f.label "Tier listタイトルを入力" %>
             <%= f.text_field :list, class: 'form-control' %>
 
+            <%= f.label :editable_by_anyone, class: "chekbox inline" do %>
+                <%= f.check_box :editable_by_anyone %>
+                <span>誰でも編集可能にする</span>
+            <% end %>
+
             <%= f.submit "作成", class: "btn btn-primary" %>
         <% end %>
     </div>
