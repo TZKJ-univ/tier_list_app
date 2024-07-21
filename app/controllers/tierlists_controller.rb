@@ -1,10 +1,22 @@
 class TierlistsController < ApplicationController
   before_action :logged_in_user, only: %i[create destroy]
-  before_action :correct_user, only: :destroy
-  before_action :set_tierlist, only: %i[show destroy]
+  before_action :set_tierlist, only: %i[show destroy edit update]
+  before_action :check_edit_permission, only: %i[edit update destroy update]
 
   def new
     @tierlist = Tierlist.new
+  end
+
+  def edit
+  end
+
+  def update
+    if @tierlist.update(tierlist_params)
+      flash[:success] = 'Tierlist updated!'
+      redirect_to @tierlist
+    else
+      render 'edit'
+    end
   end
 
   def index
@@ -12,7 +24,7 @@ class TierlistsController < ApplicationController
   end
 
   def show
-    @can_add_item = current_user?(@tierlist.user)
+    @can_add_item = ( current_user?(@tierlist.user) or @tierlist.editable_by_anyone )
     @tierlistitems = @tierlist.tierlistitems.order(:rank)
   end
 
@@ -44,12 +56,18 @@ class TierlistsController < ApplicationController
     @tierlist = Tierlist.find(params[:id])
   end
 
-  def tierlist_params
-    params.require(:tierlist).permit(:list)
-  end
-
   def correct_user
     @tierlist = current_user.tierlists.find_by(id: params[:id])
     redirect_to root_url, status: :see_other if @tierlist.nil?
+  end
+
+  def tierlist_params
+    params.require(:tierlist).permit(:list, :editable_by_anyone)
+  end
+
+  def check_edit_permission
+    unless @tierlist.editable_by_anyone || @tierlist.user == current_user
+      redirect_to tierlists_path, alert: 'You do not have permission to edit this tierlist.'
+    end
   end
 end

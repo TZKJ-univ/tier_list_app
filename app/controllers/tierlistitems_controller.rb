@@ -50,9 +50,9 @@ class TierlistitemsController < ApplicationController
   end
 
   def correct_user
-    return if current_user == @tierlist.user
+    return if @tierlist.editable_by_anyone || current_user == @tierlist.user
 
-    flash.now[:error] = 'You are not authorized to perform this action.'
+    flash[:error] = 'You are not authorized to perform this action.'
     redirect_to root_url
   end
 end
