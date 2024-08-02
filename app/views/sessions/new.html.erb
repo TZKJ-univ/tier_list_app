@@ -19,6 +19,11 @@
 
             <%= f.submit "ログイン", class: "btn btn-primary" %>
         <% end %>
+        <%= form_with url: guest_login_path, method: :post, local: true do %>
+         <div>
+            <%= submit_tag 'ログインせずに続ける', class: 'btn btn-lg btn-secondary' %>
+         </div>
+        <% end %>
         
         <p>アカウントをお持ちでない方 <%= link_to "アカウント作成", signup_path %></p>
 

@@ -5,6 +5,10 @@ class TierlistsController < ApplicationController
   before_action :correct_user, only: %i[destroy]
 
   def new
+    unless logged_in?
+      guest_user = User.create_guest_user
+      log_in(guest_user)
+    end
     @tierlist = Tierlist.new
   end
 
