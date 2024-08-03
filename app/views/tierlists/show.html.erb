@@ -55,11 +55,16 @@
         </td>
         <td>
           <ul class="tierlist-items-inline">
-            <% items.each do |item| %>
+            <% items.sort_by(&:position).each do |item| %>
               <li>
                 <%= item.listitem %>
                 <% if @can_add_item %>
                   <%= link_to "削除", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
+                  <div class="vote-buttons">
+                    <%= button_to " up ", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'up'), method: :post, class: 'vote-button upvote' %>
+                    <%= button_to "stay", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'stay'), method: :post, class: 'vote-button stay' %>
+                    <%= button_to " down ", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'down'), method: :post, class: 'vote-button downvote' %>
+                  </div>
                 <% end %>
               </li>
             <% end %>

@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.3'
 
+gem 'acts_as_list'
 gem 'whenever', require: false
 gem 'active_storage_validations', '0.9.8'
 gem 'bcrypt', '3.1.18'
