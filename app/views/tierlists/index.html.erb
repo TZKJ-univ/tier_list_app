@@ -10,7 +10,7 @@
         <div class="thumbnail-container">
           <table class="tierlist-table thumbnail">
             <tbody>
-              <% tierlist.tierlistitems&.group_by(&:rank)&.each do |rank, items| %>
+              <% tierlist.tierlistitems.group_by(&:rank).each do |rank, items| %>
                 <tr class="rank-<%= rank %>">
                   <td>
                     <strong>
@@ -34,11 +34,11 @@
                   </td>
                   <td>
                     <ul class="tierlist-items-inline">
-                      <% items.each do |item| %>
+                      <% items.sort_by(&:position).each do |item| %>
                         <li>
                           <%= item.listitem %>
                           <% if @can_add_item %>
-                            <%= link_to "削除", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
+                            <%= link_to "削除", tierlist_tierlistitem_path(tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
                           <% end %>
                         </li>
                       <% end %>
