@@ -3,6 +3,12 @@ class TierlistitemsController < ApplicationController
   before_action :set_tierlistitem, only: %i[edit update destroy]
   before_action :correct_user, only: %i[edit update destroy]
 
+  def move
+    @tierlistitem = @tierlist.tierlistitems.find(params[:id])
+    @tierlistitem.insert_at(params[:position].to_i)
+    head :ok
+  end
+
   def new
     @tierlistitem = @tierlist.tierlistitems.build
   end
