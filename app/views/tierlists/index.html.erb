@@ -2,7 +2,7 @@
 <h1>ティアリスト一覧</h1>
 <ul class="tierlists">
   <% @tierlists.each do |tierlist| %>
-    <li id="tierlist-<%= tierlist.id %>">
+    <li id="tierlist-<%= tierlist.id %>" draggable="true">
       <%= link_to gravatar_for(tierlist.user, size: 50), tierlist.user %>
       <span class="user"><%= link_to tierlist.user.name, tierlist.user %></span>
       <span class="content">
@@ -35,7 +35,7 @@
                   <td>
                     <ul class="tierlist-items-inline">
                       <% items.sort_by(&:position).each do |item| %>
-                        <li>
+                        <li id="item-<%= item.id %>" draggable="true">
                           <%= item.listitem %>
                           <% if @can_add_item %>
                             <%= link_to "削除", tierlist_tierlistitem_path(tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
