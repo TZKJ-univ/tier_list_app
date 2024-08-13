@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
   # /users/1/following, /users/1/followersのURLに対応
   # following_user_path(:id), followers_user_path(:id)の名前付きルーティングに対応
+  resources :relationships, only: %i[create destroy]
   resources :users
   resources :account_activations, only: [:edit]
   ## /account_activations/:id/editがurlとして使用可能に
