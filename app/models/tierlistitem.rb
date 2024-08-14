@@ -6,6 +6,7 @@ class Tierlistitem < ApplicationRecord
                        uniqueness: { scope: :tierlist_id }
   validates :rank, presence: true
   has_many :votes, dependent: :destroy
+  has_one_attached :image
 
   # Method to calculate the most frequent vote
   def most_frequent_vote

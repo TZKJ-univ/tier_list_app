@@ -15,6 +15,7 @@ class TierlistitemsController < ApplicationController
 
   def create
     @tierlistitem = @tierlist.tierlistitems.build(tierlistitem_params)
+    @tierlistitem.image.attach(params[:tierlistitem][:image])
     if @tierlistitem.save
       flash[:success] = 'Tierlist item created!'
       redirect_to @tierlist
@@ -52,7 +53,7 @@ class TierlistitemsController < ApplicationController
   end
 
   def tierlistitem_params
-    params.require(:tierlistitem).permit(:listitem, :rank)
+    params.require(:tierlistitem).permit(:listitem, :rank, :image)
   end
 
   def correct_user

@@ -20,6 +20,11 @@
       <%= form.label "TIERを選択" %>
       <%= form.select :rank, options_for_select([['S', 1], ['A', 2], ['B', 3], ['C', 4], ['D', 5], ['E', 6]]) %>
     </div>
+    <div class="field">
+      <span class="image">
+        <%= form.file_field :image %>
+      </span>
+    </div>
     <div class="actions">
       <%= form.submit "追加", id: "submit_button", disabled: true %>
     </div>
@@ -58,6 +63,7 @@
             <% items.sort_by(&:position).each do |item| %>
               <li>
                 <%= item.listitem %>
+                <%= image_tag item.image.variant(resize: "100x100") if item.image.attached? %>
                 <% if @can_add_item %>
                   <%= link_to "削除", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
                   <div class="vote-buttons">
