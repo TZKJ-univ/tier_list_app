@@ -37,6 +37,7 @@
                       <% items.sort_by(&:position).each do |item| %>
                         <li>
                           <%= item.listitem %>
+                          <%= image_tag item.image.variant(resize: "100x100") if item.image.attached? %>
                           <% if @can_add_item %>
                             <%= link_to "削除", tierlist_tierlistitem_path(tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
                           <% end %>
