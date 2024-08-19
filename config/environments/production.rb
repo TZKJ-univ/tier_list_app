@@ -1,6 +1,8 @@
 require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
+  config.assets.compile = false
+  config.assets.digest = true
   config.hosts << 'gstonehill.xyz'
   config.action_controller.default_url_options = { protocol: 'https', host: 'gstonehill.xyz' }
 
@@ -9,32 +11,26 @@ Rails.application.configure do
   # In the production environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  config.cache_classes = false
+  config.cache_classes = true
 
   # Do not eager load code on boot.
-  config.eager_load = false
+  config.eager_load = true
 
   # Show full error reports.
-  config.consider_all_requests_local = true
+  config.consider_all_requests_local = false
 
   # Enable server timing
   config.server_timing = true
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
-  if Rails.root.join('tmp/caching-dev.txt').exist?
-    config.action_controller.perform_caching = true
-    config.action_controller.enable_fragment_cache_logging = true
+  config.action_controller.perform_caching = true
+  config.action_controller.enable_fragment_cache_logging = true
 
-    config.cache_store = :memory_store
-    config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
-    }
-  else
-    config.action_controller.perform_caching = false
-
-    config.cache_store = :null_store
-  end
+  config.cache_store = :memory_store
+  config.public_file_server.headers = {
+    'Cache-Control' => "public, max-age=#{2.days.to_i}"
+  }
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
@@ -91,7 +87,6 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-  # 環境変数を読み込むための設定
   # 環境変数を読み込むための設定
   Dotenv::Rails.load if defined?(Dotenv)
 
