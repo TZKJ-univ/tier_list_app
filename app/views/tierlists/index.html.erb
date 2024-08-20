@@ -38,9 +38,6 @@
                         <li>
                           <%= item.listitem %>
                           <%= image_tag item.image.variant(resize: "100x100") if item.image.attached? %>
-                          <% if @can_add_item %>
-                            <%= link_to "削除", tierlist_tierlistitem_path(tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
-                          <% end %>
                         </li>
                       <% end %>
                     </ul>
@@ -53,9 +50,9 @@
       </span>
       <span class="timestamp">
         <%= time_ago_in_words(tierlist.created_at) %> ago.
-        <% if current_user?(tierlist.user) %>
-          <%= link_to "delete", tierlist, 
-          data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
+        <% if current_user?(tierlist.user) or tierlist.editable_by_anyone%>
+          <%= link_to "削除", tierlist, 
+          data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
         <% end %>
       </span>
     </li>
