@@ -2,8 +2,7 @@ class Tierlistitem < ApplicationRecord
   belongs_to :tierlist
   acts_as_list scope: [:tierlist_id, :rank]
   validates :tierlist_id, presence: true
-  validates :listitem, presence: true, length: { maximum: 50 },
-                       uniqueness: { scope: :tierlist_id }
+  validates :listitem, length: { maximum: 50 }
   validates :rank, presence: true
   has_many :votes, dependent: :destroy
   has_one_attached :image
