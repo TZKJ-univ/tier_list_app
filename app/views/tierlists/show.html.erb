@@ -26,7 +26,7 @@
       </span>
     </div>
     <div class="actions">
-      <%= form.submit "追加", id: "submit_button", disabled: true %>
+      <%= form.submit "追加", id: "submit_button"%>
     </div>
     <div>
       <%= link_to 'ティアリスト設定', edit_tierlist_path(@tierlist), class: 'btn btn-info' %>
@@ -86,8 +86,6 @@
 
 <script>
   document.addEventListener("turbo:load", function() {
-    const listitemField = document.getElementById("listitem_field");
-    const submitButton = document.getElementById("submit_button");
 
     function toggleSubmitButton() {
       submitButton.disabled = !listitemField.value.trim();

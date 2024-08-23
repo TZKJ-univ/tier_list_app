@@ -12,6 +12,10 @@
                 <%= f.check_box :editable_by_anyone %>
                 <span>誰でも編集可能にする</span>
             <% end %>
+            <%= f.label :public, class: "chekbox inline" do %>
+                <%= f.check_box :public %>
+                <span>公開する</span>
+            <% end %>
 
             <%= f.submit "作成", class: "btn btn-primary" %>
         <% end %>

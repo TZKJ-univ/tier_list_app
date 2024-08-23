@@ -51,7 +51,7 @@
       <span class="timestamp">
         <%= time_ago_in_words(tierlist.created_at) %> ago.
         <% if current_user?(tierlist.user) or tierlist.editable_by_anyone%>
-          <%= link_to "削除", tierlist, 
+          <%= link_to "削除", tierlist,
           data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
         <% end %>
       </span>

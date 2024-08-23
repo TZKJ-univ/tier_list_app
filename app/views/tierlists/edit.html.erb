@@ -14,6 +14,8 @@
         <div class="custom-control custom-checkbox">
           <%= f.check_box :editable_by_anyone, class: 'custom-control-input' %>
           <%= f.label :editable_by_anyone, "誰でも編集可能にする", class: 'custom-control-label' %>
+          <%= f.check_box :public, class: 'custom-control-input' %>
+          <%= f.label :public, "公開する", class: 'custom-control-label' %>
         </div>
       </div>
 
