@@ -34,13 +34,19 @@
                   </td>
                   <td>
                     <ul class="tierlist-items-inline">
-                      <% items.sort_by(&:position).each do |item| %>
-                        <li>
-                          <%= item.listitem %>
-                          <%= image_tag item.image.variant(resize: "100x100") if item.image.attached? %>
-                        </li>
-                      <% end %>
-                    </ul>
+            <% items.sort_by(&:position).each do |item| %>
+              <li>
+                <div class="tierlist-item">
+                  <div class="tierlist-item-name">
+                    <%= item.listitem %>
+                  </div>
+                  <div class="tierlist-item-img">
+                    <%= image_tag item.image.variant(resize: "100x100") if item.image.attached? %>
+                  </div>
+                </div>
+              </li>
+            <% end %>
+          </ul>
                   </td>
                 </tr>
               <% end %>
