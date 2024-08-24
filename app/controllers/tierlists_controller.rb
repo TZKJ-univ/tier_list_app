@@ -24,11 +24,12 @@ class TierlistsController < ApplicationController
   end
 
   def index
-    @tierlists = Tierlist.where(public: true)
+    @tierlists = Tierlist.where(public: true || current_user)
   end
 
   def show
     @can_add_item = ( current_user?(@tierlist.user) or @tierlist.editable_by_anyone )
+    @can_vote = @tierlist.votable
     @tierlistitems = @tierlist.tierlistitems.order(:rank)
   end
 
@@ -70,7 +71,7 @@ class TierlistsController < ApplicationController
   end
 
   def tierlist_params
-    params.require(:tierlist).permit(:list, :editable_by_anyone)
+    params.require(:tierlist).permit(:list, :editable_by_anyone, :public, :votable)
   end
 
   def check_edit_permission

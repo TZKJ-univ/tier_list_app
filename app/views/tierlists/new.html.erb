@@ -16,6 +16,10 @@
                 <%= f.check_box :public %>
                 <span>公開する</span>
             <% end %>
+            <%= f.label :votable, class: "chekbox inline" do %>
+                <%= f.check_box :votable %>
+                <span>投票</span>
+            <% end %>
 
             <%= f.submit "作成", class: "btn btn-primary" %>
         <% end %>
