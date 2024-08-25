@@ -1,7 +1,7 @@
 <%= form_with(model: @tierlist) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
     <div class="field">
-        <%= f.text_area :list, placeholder: "新規Tier listを作成 ...", class: "small-textarea"%>
+        <%= f.text_area :list, placeholder: "新規ティアリストを作成 ...", class: "small-textarea"%>
     </div>
     <%= f.submit "新規作成", class: "btn btn-primary small-button" %>
 <% end %>
