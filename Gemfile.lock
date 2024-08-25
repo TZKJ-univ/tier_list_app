@@ -183,6 +183,8 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
+    meta-tags (2.22.0)
+      actionpack (>= 6.0.0, < 8.1)
     method_source (1.1.0)
     mini_magick (4.13.1)
     mini_mime (1.1.5)
@@ -347,6 +349,8 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (6.2.0)
       activesupport (>= 5.2.0)
+    sitemap_generator (6.3.0)
+      builder (~> 3.0)
     solargraph (0.50.0)
       backport (~> 1.2)
       benchmark
@@ -434,6 +438,7 @@ DEPENDENCIES
   irb (= 1.10.0)
   jbuilder (= 2.11.5)
   launchy
+  meta-tags
   minitest (= 5.18.0)
   minitest-reporters (= 1.6.0)
   puma (= 5.6.8)
@@ -448,6 +453,7 @@ DEPENDENCIES
   sassc-rails (= 2.1.2)
   selenium-webdriver
   shoulda-matchers
+  sitemap_generator
   solargraph (= 0.50.0)
   sprockets-rails (= 3.4.2)
   sqlite3 (= 1.6.1)
