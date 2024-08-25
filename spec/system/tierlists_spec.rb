@@ -9,7 +9,7 @@ RSpec.describe 'Tierlists', type: :system do
     visit root_path
 
     expect do
-      fill_in '新規Tier listを作成 ...', with: 'Test List'
+      fill_in '新規ティアリストを作成 ...', with: 'Test List'
       click_button '新規作成'
 
       expect(page).to have_content 'Tierlist created!'
