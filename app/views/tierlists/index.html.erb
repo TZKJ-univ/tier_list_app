@@ -10,7 +10,7 @@
         <div class="thumbnail-container">
           <table class="tierlist-table thumbnail">
             <tbody>
-              <% tierlist.tierlistitems.group_by(&:rank).each do |rank, items| %>
+              <% tierlist.tierlistitems.group_by(&:rank).sort.each do |rank, items| %>
                 <tr class="rank-<%= rank %>">
                   <td>
                     <strong>
@@ -34,15 +34,19 @@
                   </td>
                   <td>
                     <ul class="tierlist-items-inline">
-                      <% items.sort_by(&:position).each do |item| %>
-                        <li id="item-<%= item.id %>" draggable="true">
-                          <%= item.listitem %>
-                          <% if @can_add_item %>
-                            <%= link_to "削除", tierlist_tierlistitem_path(tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
-                          <% end %>
-                        </li>
-                      <% end %>
-                    </ul>
+            <% items.sort_by(&:position).each do |item| %>
+              <li id="item-<%= item.id %>" draggable="true">
+                <div class="tierlist-item">
+                  <div class="tierlist-item-name">
+                    <%= item.listitem %>
+                  </div>
+                  <div class="tierlist-item-img">
+                    <%= image_tag item.image.variant(resize: "100x100") if item.image.attached? %>
+                  </div>
+                </div>
+              </li>
+            <% end %>
+          </ul>
                   </td>
                 </tr>
               <% end %>
@@ -52,9 +56,9 @@
       </span>
       <span class="timestamp">
         <%= time_ago_in_words(tierlist.created_at) %> ago.
-        <% if current_user?(tierlist.user) %>
-          <%= link_to "delete", tierlist, 
-          data: { "turbo-method": :delete, turbo_confirm: "You sure?" } %>
+        <% if current_user?(tierlist.user) or tierlist.editable_by_anyone%>
+          <%= link_to "削除", tierlist,
+          data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
         <% end %>
       </span>
     </li>

@@ -1,16 +1,24 @@
-<% provide(:title, "Tier listを作成") %>
-<h1>Tier listを作成</h1>
+<% provide(:title, "ティアリストを作成") %>
+<h1>ティアリストを作成</h1>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <%= form_with(model: @tierlist) do |f| %>
             <%= render 'shared/error_messages', object: f.object %>
 
-            <%= f.label "Tier listタイトルを入力" %>
+            <%= f.label "ティアリストタイトルを入力" %>
             <%= f.text_field :list, class: 'form-control' %>
 
             <%= f.label :editable_by_anyone, class: "chekbox inline" do %>
                 <%= f.check_box :editable_by_anyone %>
                 <span>誰でも編集可能にする</span>
+            <% end %>
+            <%= f.label :public, class: "chekbox inline" do %>
+                <%= f.check_box :public %>
+                <span>公開する</span>
+            <% end %>
+            <%= f.label :votable, class: "chekbox inline" do %>
+                <%= f.check_box :votable %>
+                <span>投票可能にする</span>
             <% end %>
 
             <%= f.submit "作成", class: "btn btn-primary" %>

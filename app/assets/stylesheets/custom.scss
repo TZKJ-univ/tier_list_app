@@ -267,6 +267,16 @@ input {
     margin-top: 10px;
 }
 
+#tierlist_public {
+    width: auto;
+    margin-top: 10px;
+}
+
+#tierlist_votable {
+    width: auto;
+    margin-top: 10px;
+}
+
 /* dropdown menu */
 
 .dropdown-menu.active {
@@ -408,7 +418,7 @@ span.image {
   
   .tierlist-table th, .tierlist-table td {
     border: 1px solid #ddd;
-    padding: 10px;
+    padding: 1px;
     text-align: center;
     line-height: 1.6; /* 行間を少し広げる */
   }
@@ -428,8 +438,10 @@ span.image {
   }
   
   .tierlist-items-inline li {
-    margin: 10px;
-    padding: 10px;
+    display: flex;
+    align-items: center;
+    margin: 1px;
+    padding: 1px;
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #f9f9f9; /* アイテムの背景色を設定 */
@@ -505,4 +517,73 @@ span.image {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+.tierlist-items-inline {
+    list-style-type: none;
+}
+
+.tierlist-items-inline {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tierlist-item-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0;
+    margin: 0;
+    background-color: #f8f8f8;
+    border-radius: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.tierlist-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    width: 90px;
+    height: 100px;
+}
+
+.tierlist-item-img img {
+    width: 80px;
+    height: 80px;
+    margin: 0;
+    padding: 0;
+}
+
+.tierlist-item-name {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0;
+    padding: 0;
+    min-height: 10px;
+}
+
+.vote-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    margin-left: 10px; /* 隣にスペースを持たせるために最小限のマージン */
+}
+
+.vote-buttons button {
+    padding: 0;
+    margin: 0;
+}
+
+.admax {
+    width: auto;
 }

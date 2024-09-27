@@ -20,14 +20,25 @@
       <%= form.label "TIERを選択" %>
       <%= form.select :rank, options_for_select([['S', 1], ['A', 2], ['B', 3], ['C', 4], ['D', 5], ['E', 6]]) %>
     </div>
+    <div class="field">
+      <span class="image">
+        <%= form.file_field :image %>
+      </span>
+    </div>
     <div class="actions">
-      <%= form.submit "追加", id: "submit_button", disabled: true %>
+      <%= form.submit "追加", id: "submit_button"%>
     </div>
     <div>
       <%= link_to 'ティアリスト設定', edit_tierlist_path(@tierlist), class: 'btn btn-info' %>
     </div>
   <% end %>
 <% end %>
+
+<div class="ad-container">
+  <!-- admax -->
+  <script src="https://adm.shinobi.jp/s/00ef48a69f22cb03b5897c0e01867e50"></script>
+  <!-- admax -->
+</div>
 
 <table class="tierlist-table">
   <tbody>
@@ -56,16 +67,27 @@
         <td>
           <ul class="tierlist-items-inline" id="tierlist-rank-<%= rank %>">
             <% items.sort_by(&:position).each do |item| %>
-              <li id="item-<%= item.id %>" draggable="true">
-                <%= item.listitem %>
-                <% if @can_add_item %>
-                  <%= link_to "削除", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
-                  <div class="vote-buttons">
-                    <%= button_to " up ", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'up'), method: :post, class: 'vote-button upvote' %>
-                    <%= button_to "stay", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'stay'), method: :post, class: 'vote-button stay' %>
-                    <%= button_to " down ", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'down'), method: :post, class: 'vote-button downvote' %>
+            <li id="item-<%= item.id %>" draggable="true">
+                <div class="tierlist-item">
+                  <div class="tierlist-item-name">
+                    <%= item.listitem %>
                   </div>
-                <% end %>
+                  <div class="tierlist-item-img">
+                    <%= image_tag item.image.variant(resize: "100x100") if item.image.attached? %>
+                  </div>
+                </div>
+                    <% if @can_vote %>
+                      <div class="vote-buttons">
+                        <div class="buttons-container">
+                            <% if @can_add_item %>
+                              <%= link_to "削除", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" }, class: 'delete-button' %>
+                            <% end %>
+                          </div>
+                        <%= button_to "up", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'up'), method: :post, class: 'vote-button upvote' %>
+                        <%= button_to "stay", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'stay'), method: :post, class: 'vote-button stay' %>
+                        <%= button_to "down", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'down'), method: :post, class: 'vote-button downvote' %>
+                      </div>
+                    <% end %>
               </li>
             <% end %>
           </ul>

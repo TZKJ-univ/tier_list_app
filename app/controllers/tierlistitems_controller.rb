@@ -15,20 +15,22 @@ class TierlistitemsController < ApplicationController
 
   def create
     @tierlistitem = @tierlist.tierlistitems.build(tierlistitem_params)
+    @tierlistitem.image.attach(params[:tierlistitem][:image])
     if @tierlistitem.save
-      flash[:success] = 'Tierlist item created!'
+      flash[:success] = 'Tierlistアイテムが追加されました'
       redirect_to @tierlist
     else
-      flash[:error] = 'Failed to create tierlist item.'
+      flash[:error] = 'アイテムの追加に失敗しました'
       render 'tierlists/show'
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
     if @tierlistitem.update(tierlistitem_params)
-      flash[:success] = 'Tierlist item updated!'
+      flash[:success] = 'Tierlistアイテムが更新されました'
       redirect_to @tierlist
     else
       render 'edit'
@@ -37,7 +39,7 @@ class TierlistitemsController < ApplicationController
 
   def destroy
     @tierlistitem.destroy
-    flash[:success] = 'Tierlist item deleted!'
+    flash[:success] = 'Tierlistアイテムが削除されました'
     redirect_to @tierlist
   end
 
@@ -52,13 +54,13 @@ class TierlistitemsController < ApplicationController
   end
 
   def tierlistitem_params
-    params.require(:tierlistitem).permit(:listitem, :rank)
+    params.require(:tierlistitem).permit(:listitem, :rank, :image)
   end
 
   def correct_user
     return if @tierlist.editable_by_anyone || current_user == @tierlist.user
 
-    flash[:error] = 'You are not authorized to perform this action.'
+    flash[:error] = '権限がありません'
     redirect_to root_url
   end
 end
