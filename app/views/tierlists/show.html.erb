@@ -65,9 +65,9 @@
           </strong>
         </td>
         <td>
-          <ul class="tierlist-items-inline">
+          <ul class="tierlist-items-inline" id="tierlist-rank-<%= rank %>">
             <% items.sort_by(&:position).each do |item| %>
-              <li>
+            <li id="item-<%= item.id %>" draggable="true">
                 <div class="tierlist-item">
                   <div class="tierlist-item-name">
                     <%= item.listitem %>
@@ -99,12 +99,47 @@
 
 <script>
   document.addEventListener("turbo:load", function() {
+  const listitemField = document.getElementById("listitem_field");
+  const submitButton = document.getElementById("submit_button");
 
-    function toggleSubmitButton() {
-      submitButton.disabled = !listitemField.value.trim();
+  function toggleSubmitButton() {
+    submitButton.disabled = !listitemField.value.trim();
+  }
+
+  listitemField.addEventListener("input", toggleSubmitButton);
+  toggleSubmitButton(); // 初期ロード時にボタンの状態を設定
+
+  const dragstartHandler = (event) => {
+    event.dataTransfer.setData('text/plain', event.target.id);
+    event.dropEffect = 'move';
+  };
+
+  const dragoverHandler = (event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+  };
+
+  const dropHandler = (event) => {
+    event.preventDefault();
+    const id = event.dataTransfer.getData('text');
+    const draggableElement = document.getElementById(id);
+    const dropzone = event.target.closest('ul.tierlist-items-inline');
+
+    if (dropzone) {
+      // ドロップ先が空のティアでもアイテムを追加
+      dropzone.appendChild(draggableElement);
     }
+  };
 
-    listitemField.addEventListener("input", toggleSubmitButton);
-    toggleSubmitButton(); // 初期ロード時にボタンの状態を設定
+  // ドラッグ可能なアイテムにイベントリスナーを追加
+  document.querySelectorAll('[draggable="true"]').forEach((item) => {
+    item.addEventListener('dragstart', dragstartHandler);
   });
+
+  // ドロップゾーンにイベントリスナーを追加
+  document.querySelectorAll('.tierlist-items-inline').forEach((zone) => {
+    zone.addEventListener('dragover', dragoverHandler);
+    zone.addEventListener('drop', dropHandler);
+  });
+});
 </script>
