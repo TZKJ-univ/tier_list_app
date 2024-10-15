@@ -4,10 +4,10 @@ class TierlistsController < ApplicationController
   before_action :correct_user, only: %i[destroy]
 
   def new
-    unless logged_in?
-      guest_user = User.create_guest_user
-      log_in(guest_user)
-    end
+    # unless logged_in?
+    #   guest_user = User.create_guest_user
+    #   log_in(guest_user)
+    # end
     @tierlist = Tierlist.new
   end
 
@@ -34,14 +34,22 @@ class TierlistsController < ApplicationController
   end
 
   def create
-    @tierlist = current_user.tierlists.build(tierlist_params)
+    if logged_in?
+      @tierlist = current_user.tierlists.build(tierlist_params)
+    else
+      @tierlist = Tierlist.new(tierlist_params)
+    end
     if @tierlist.save
       flash[:success] = 'Tierlistが作成されました'
       redirect_to root_url
     else
-      @feed_items = current_user.feed.paginate(page: params[:page])
-      @tierlist_feed_items = current_user.tierlist_feed.paginate(page: params[:page])
-      render 'static_pages/home', status: :unprocessable_entity
+      if logged_in?
+        @feed_items = current_user.feed.paginate(page: params[:page])
+        @tierlist_feed_items = current_user.tierlist_feed.paginate(page: params[:page])
+        render 'static_pages/home', status: :unprocessable_entity
+      else
+        render 'new', status: :unprocessable_entity
+      end
     end
   end
 
