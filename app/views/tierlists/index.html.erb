@@ -3,8 +3,10 @@
 <ul class="tierlists">
   <% @tierlists.each do |tierlist| %>
     <li id="tierlist-<%= tierlist.id %>" draggable="true">
-      <%= link_to gravatar_for(tierlist.user, size: 50), tierlist.user %>
-      <span class="user"><%= link_to tierlist.user.name, tierlist.user %></span>
+      <% if tierlist.user != nil %>
+        <%= link_to gravatar_for(tierlist.user, size: 50), tierlist.user %>
+        <span class="user"><%= link_to tierlist.user.name, tierlist.user %></span>
+      <% end %>
       <span class="content">
         <%= link_to tierlist.list, tierlist_path(tierlist) %>
         <div class="thumbnail-container">

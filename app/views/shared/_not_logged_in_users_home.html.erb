@@ -6,7 +6,7 @@
   <%= link_to "サインアップ", signup_path, class: "btn btn-lg btn-primary" %>
   <%= form_with url: guest_login_path, method: :post, local: true do %>
     <div>
-      <%= submit_tag 'ログインせずに続ける', class: 'btn btn-lg btn-secondary' %>
+      <%= submit_tag 'ゲストユーザを作成', class: 'btn btn-lg btn-secondary' %>
     </div>
   <% end %>
 </div>
