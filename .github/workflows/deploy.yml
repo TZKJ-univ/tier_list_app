@@ -9,7 +9,14 @@ jobs:
   pull:
     runs-on: ubuntu-latest
     steps:
-      - name: SSH to server and pull latest changes
+      - name: SSH to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+
+      - name: Pull latest changes
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -18,11 +25,53 @@ jobs:
           script: |
             cd ./tier_list_app
             git pull origin main
+
+      - name: Stop running Puma
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
             pkill -9 ruby
-            pkill -9 ruby
-            set -o errexit
+
+      - name: Install dependencies
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd ./tier_list_app
             bundle install
+
+      - name: Precompile assets
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd ./tier_list_app
             bundle exec rails assets:precompile RAILS_ENV=production
             bundle exec rails assets:clean RAILS_ENV=production
+
+      - name: Migrate database
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd ./tier_list_app
             bundle exec rails db:migrate RAILS_ENV=production
+
+      - name: Start Puma in background
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            cd ./tier_list_app
             nohup env RAILS_ENV=production bundle exec puma -C config/puma.rb > puma.log 2>&1 &
