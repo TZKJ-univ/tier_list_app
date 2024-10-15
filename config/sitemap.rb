@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "https://gstonehill.xyz"
+SitemapGenerator::Sitemap.default_host = 'https://gstonehill.xyz'
 
 SitemapGenerator::Sitemap.create do
   # ルートページ

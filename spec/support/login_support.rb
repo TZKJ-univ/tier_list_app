@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module LoginSupport
   def log_in(user)
     visit login_path

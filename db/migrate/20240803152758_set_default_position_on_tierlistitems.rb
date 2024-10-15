@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SetDefaultPositionOnTierlistitems < ActiveRecord::Migration[7.0]
   def up
     # nilのpositionにデフォルト値を設定

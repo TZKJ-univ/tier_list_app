@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddVotingAndVisibilityToTierlists < ActiveRecord::Migration[7.0]
   def change
     add_column :tierlists, :votable, :boolean, default: true, null: false

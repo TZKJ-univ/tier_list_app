@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Tierlistitem < ApplicationRecord
   belongs_to :tierlist
-  acts_as_list scope: [:tierlist_id, :rank]
+  acts_as_list scope: %i[tierlist_id rank]
   validates :tierlist_id, presence: true
   validates :listitem, length: { maximum: 50 }
   validates :rank, presence: true

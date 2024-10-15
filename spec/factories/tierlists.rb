@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :tierlist do
     sequence(:list) { |n| "Tierlist Test #{n}" }

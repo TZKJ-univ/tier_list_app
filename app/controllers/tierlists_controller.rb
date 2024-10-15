@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TierlistsController < ApplicationController
   before_action :set_tierlist, only: %i[show destroy edit update]
   before_action :check_edit_permission, only: %i[edit update destroy update]
@@ -11,8 +13,7 @@ class TierlistsController < ApplicationController
     @tierlist = Tierlist.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @tierlist.update(tierlist_params)
@@ -28,39 +29,33 @@ class TierlistsController < ApplicationController
   end
 
   def show
-    @can_add_item = ( current_user?(@tierlist.user) or @tierlist.editable_by_anyone )
+    @can_add_item = (current_user?(@tierlist.user) or @tierlist.editable_by_anyone)
     @can_vote = @tierlist.votable
     @tierlistitems = @tierlist.tierlistitems.order(:rank)
   end
 
   def create
-    if logged_in?
-      @tierlist = current_user.tierlists.build(tierlist_params)
-    else
-      @tierlist = Tierlist.new(tierlist_params)
-    end
+    @tierlist = if logged_in?
+                  current_user.tierlists.build(tierlist_params)
+                else
+                  Tierlist.new(tierlist_params)
+                end
     if @tierlist.save
       flash[:success] = 'Tierlistが作成されました'
       redirect_to root_url
+    elsif logged_in?
+      @feed_items = current_user.feed.paginate(page: params[:page])
+      @tierlist_feed_items = current_user.tierlist_feed.paginate(page: params[:page])
+      render 'static_pages/home', status: :unprocessable_entity
     else
-      if logged_in?
-        @feed_items = current_user.feed.paginate(page: params[:page])
-        @tierlist_feed_items = current_user.tierlist_feed.paginate(page: params[:page])
-        render 'static_pages/home', status: :unprocessable_entity
-      else
-        render 'new', status: :unprocessable_entity
-      end
+      render 'new', status: :unprocessable_entity
     end
   end
 
   def destroy
     @tierlist.destroy
     flash[:success] = 'Tierlistは削除されました'
-    if request.referrer.nil?
-      redirect_back_or_to(root_url, status: :see_other)
-    else
-      redirect_back_or_to(root_url, status: :see_other)
-    end
+    redirect_back_or_to(root_url, status: :see_other)
   end
 
   private
@@ -72,7 +67,10 @@ class TierlistsController < ApplicationController
   def correct_user
     if logged_in?
       @tierlist = Tierlist.find_by(id: params[:id])
-      redirect_to root_url, status: :see_other if (@tierlist.user != current_user and (Tierlist.find_by(id: params[:id]).editable_by_anyone==false))
+      if (@tierlist.user != current_user) && (Tierlist.find_by(id: params[:id]).editable_by_anyone == false)
+        redirect_to root_url,
+                    status: :see_other
+      end
     else
       redirect_to root_url, status: :see_other
     end
@@ -83,8 +81,8 @@ class TierlistsController < ApplicationController
   end
 
   def check_edit_permission
-    unless @tierlist.editable_by_anyone || @tierlist.user == current_user
-      redirect_to tierlists_path, alert: '権限がありません'
-    end
+    return if @tierlist.editable_by_anyone || @tierlist.user == current_user
+
+    redirect_to tierlists_path, alert: '権限がありません'
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 User.create!(name: 'Example User',
              email: 'example@railstutorial.org',
              password: 'foobar',
