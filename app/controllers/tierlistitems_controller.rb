@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TierlistitemsController < ApplicationController
   before_action :set_tierlist
   before_action :set_tierlistitem, only: %i[edit update destroy]
@@ -25,8 +27,7 @@ class TierlistitemsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @tierlistitem.update(tierlistitem_params)

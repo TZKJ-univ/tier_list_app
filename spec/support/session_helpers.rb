@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # spec/support/session_helpers.rb
 module SessionHelpers
   def log_in_as(user)

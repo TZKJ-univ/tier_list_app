@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Tierlist < ApplicationRecord
   belongs_to :user, optional: true
   has_many :tierlistitems, dependent: :destroy

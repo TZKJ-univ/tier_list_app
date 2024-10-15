@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MicropostsController < ApplicationController
   before_action :logged_in_user, only: %i[create destroy]
   before_action :correct_user, only: :destroy
@@ -19,11 +21,7 @@ class MicropostsController < ApplicationController
     @micropost.destroy
     flash[:success] = 'Micropost deleted'
     flash[:succsess] = 'micropost deleted'
-    if request.referrer.nil?
-      redirect_back_or_to(root_url, status: :see_other)
-    else
-      redirect_back_or_to(root_url, status: :see_other)
-    end
+    redirect_back_or_to(root_url, status: :see_other)
     # リファラーが空になるケース(ブックマークなどにdestroyのURLを保存していた場合や
     # シークレットモードによる場合などリファラーがnilになるケースは割とありそう)
   end
