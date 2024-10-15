@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.3'
 
+gem 'pg', '~> 1.2'
 gem 'active_storage_validations', '0.9.8'
 gem 'acts_as_list'
 gem 'bcrypt', '3.1.18'
