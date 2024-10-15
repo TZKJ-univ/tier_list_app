@@ -19,7 +19,10 @@ jobs:
             cd ./tier_list_app
             git pull origin main
             pkill -9 ruby
+            pkill -9 ruby
+            set -o errexit
+            bundle install
             bundle exec rails assets:precompile RAILS_ENV=production
             bundle exec rails assets:clean RAILS_ENV=production
             bundle exec rails db:migrate RAILS_ENV=production
-            env RAILS_ENV=production bundle exec puma -C config/puma.rb &
+            nohup env RAILS_ENV=production bundle exec puma -C config/puma.rb > puma.log 2>&1 &
