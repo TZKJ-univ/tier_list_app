@@ -42,7 +42,7 @@ class TierlistsController < ApplicationController
                 end
     if @tierlist.save
       flash[:success] = 'Tierlistが作成されました'
-      redirect_to root_url
+      redirect_to @tierlist
     elsif logged_in?
       @feed_items = current_user.feed.paginate(page: params[:page])
       @tierlist_feed_items = current_user.tierlist_feed.paginate(page: params[:page])

@@ -98,6 +98,24 @@
 </table>
 
 <script>
+  function adjustFontSize(element) {
+    let fontSize = 16; // 初期フォントサイズ
+    const divWidth = element.clientWidth;
+    
+    while (element.scrollWidth > divWidth && fontSize > 5) { // テキストがはみ出しているかチェック
+      fontSize--;
+      element.style.fontSize = fontSize + 'px';
+      element.style.boxSizing = 'border-box'; // ボックスサイズを調整
+      element.style.padding = '0'; // パディングが邪魔しないようにする
+    }
+  }
+
+  document.addEventListener("turbo:load", function() {
+    document.querySelectorAll('.tierlist-item-name').forEach((item) => {
+      adjustFontSize(item); // テキストがdivに収まるようにフォントサイズを調整
+    });
+  });
+
   document.addEventListener("turbo:load", function() {
   const listitemField = document.getElementById("listitem_field");
   const submitButton = document.getElementById("submit_button");
