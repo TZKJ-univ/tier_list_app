@@ -74,13 +74,13 @@
     while (element.scrollWidth > divWidth && fontSize > 5) { // テキストがはみ出しているかチェック
       fontSize--;
       element.style.fontSize = fontSize + 'px';
-      // element.style.boxSizing = 'border-box'; // ボックスサイズを調整
+      element.style.boxSizing = 'border-box'; // ボックスサイズを調整
       element.style.padding = '0'; // パディングが邪魔しないようにする
     }
     while (element.scrollHeight > element.clientHeight && fontSize > 5) { // テキストがはみ出しているかチェック
       fontSize--;
       element.style.fontSize = fontSize + 'px';
-      // element.style.boxSizing = 'border-box'; // ボックスサイズを調整
+      element.style.boxSizing = 'border-box'; // ボックスサイズを調整
       element.style.padding = '0'; // パディングが邪魔しないようにする
     }
   }
