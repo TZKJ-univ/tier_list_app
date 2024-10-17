@@ -389,25 +389,7 @@ span.image {
         margin-top: 5px;
     }
 }
-
-// .tierlist-items {
-//     list-style: none;
-//     padding: 0;
-//     li {
-//         display: inline-block;
-//         padding: 10px;
-//         border: 1px solid #e8e8e8;
-//         margin: 5px;
-//         font-size: 1.5em;
-//     }
-//     .field {
-//         display: inline-block;
-//         margin-right: 10px;
-//     }
-//     .actions {
-//         display: inline-block;
-//     }
-// }    
+  
 .tierlist-table {
     width: 100%;
     border-collapse: collapse;
@@ -488,22 +470,6 @@ span.image {
   list-style-type: none;
   padding: 0;
   margin: 0;
-}
-
-.tierlist-table.thumbnail ul.tierlist-items-inline li {
-  display: inline-block;
-  margin-right: 3px; /* Smaller margin */
-}
-
-.tierlist-table.thumbnail td {
-  padding: 0;
-  margin: 0;
-  border: none;
-}
-
-.tierlist-table.thumbnail strong {
-  display: block;
-  margin-bottom: 3px; /* Smaller margin */
 }
 
 .tierlists {
