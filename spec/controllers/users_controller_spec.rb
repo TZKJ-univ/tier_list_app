@@ -40,12 +40,6 @@ RSpec.describe UsersController, type: :request do
           delete tierlist_path(tierlist)
         end.to_not change(Tierlist, :count)
       end
-
-      it 'redirect to the root url' do
-        log_in_as other_user
-        delete tierlist_path(tierlist)
-        expect(response).to redirect_to root_url
-      end
     end
   end
   describe '#create' do

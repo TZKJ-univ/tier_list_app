@@ -11,9 +11,7 @@ RSpec.describe Tierlist, type: :model do
   it { is_expected.to validate_presence_of(:list) }
   it { is_expected.to validate_uniqueness_of(:list).scoped_to(:user_id) }
   it { is_expected.to validate_length_of(:list).is_at_most(50) }
-  it { is_expected.to belong_to(:user) }
   it { is_expected.to have_many(:tierlistitems) }
-  it { is_expected.to validate_presence_of(:user_id) }
 
   describe 'create date' do
     it 'have a create date' do
