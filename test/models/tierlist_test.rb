@@ -12,9 +12,9 @@ class TierlistTest < ActiveSupport::TestCase
     assert @tierlist.valid?
   end
 
-  test 'user id should be present' do
+  test 'user id can be nil' do
     @tierlist.user_id = nil
-    assert_not @tierlist.valid?
+    assert @tierlist.valid?
   end
 
   test 'list should be present' do
