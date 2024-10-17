@@ -35,7 +35,7 @@
                     </strong>
                   </td>
                   <td>
-                    <ul class="tierlist-items-inline">
+          <ul class="tierlist-items-inline">
             <% items.sort_by(&:position).each do |item| %>
               <li id="item-<%= item.id %>" draggable="true">
                 <div class="tierlist-item">
@@ -66,3 +66,22 @@
     </li>
   <% end %>
 </ul>
+<script>
+  function adjustFontSize(element) {
+    let fontSize = 16; // 初期フォントサイズ
+    const divWidth = element.clientWidth;
+    
+    while (element.scrollWidth > divWidth && fontSize > 5) { // テキストがはみ出しているかチェック
+      fontSize--;
+      element.style.fontSize = fontSize + 'px';
+      element.style.boxSizing = 'border-box'; // ボックスサイズを調整
+      element.style.padding = '0'; // パディングが邪魔しないようにする
+    }
+  }
+
+  document.addEventListener("turbo:load", function() {
+    document.querySelectorAll('.tierlist-item-name').forEach((item) => {
+      adjustFontSize(item); // テキストがdivに収まるようにフォントサイズを調整
+    });
+  });
+</script>

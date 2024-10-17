@@ -310,10 +310,10 @@ input {
     }
     .content {
         display: block;
-        margin-left: 60px;
+        // margin-left: 60px;
         img {
             display: block;
-            padding: 5px 0;
+            // padding: 5px 0;
         }
     }
     .timestamp {
@@ -371,11 +371,11 @@ span.image {
     }
     .content {
         display: block;
-        margin-left: 60px;
+        // margin-left: 60px;
         font-size: 2em; 
         img {
             display: block;
-            padding: 5px 0;
+            // padding: 5px 0;
         }
     }
     .timestamp {
@@ -477,9 +477,8 @@ span.image {
 
 /* tierlistサムネイル */
 .tierlist-table.thumbnail {
-  font-size: 0.6em; /* Smaller font size */
   width: 100%;
-  max-width: max-content; /* Smaller max width */
+  max-width: max-content;
   margin: 0;
   padding: 0;
   border-collapse: collapse;
@@ -555,20 +554,20 @@ span.image {
 }
 
 .tierlist-item-img img {
-    width: 80px;
+    width: 85px;
     height: 80px;
     margin: 0;
     padding: 0;
 }
 
 .tierlist-item-name {
-    max-width: 100px;
+    max-width: 90px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     margin: 0;
     padding: 0;
-    min-height: 10px;
+    min-height: 20px;
 }
 
 .vote-buttons {
