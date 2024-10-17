@@ -40,94 +40,62 @@
   <!-- admax -->
 </div>
 
-<div class="tierlist-container">
-  <div class="tierlist-content">
-    <table class="tierlist-table">
-      <tbody>
-        <% @tierlistitems&.group_by(&:rank)&.each do |rank, items| %>
-          <tr class="rank-<%= rank %>">
-            <td>
-              <strong>
-                <% case rank %>
-                <% when 1 %>
-                  S
-                <% when 2 %>
-                  A
-                <% when 3 %>
-                  B
-                <% when 4 %>
-                  C
-                <% when 5 %>
-                  D
-                <% when 6 %>
-                  E
-                <% else %>
-                  <%= rank %>
-                <% end %>
-              </strong>
-            </td>
-            <td>
-              <ul class="tierlist-items-inline" id="tierlist-rank-<%= rank %>">
-                <% items.sort_by(&:position).each do |item| %>
-                <li id="item-<%= item.id %>" draggable="true">
-                    <div class="tierlist-item">
-                      <div class="tierlist-item-name">
-                        <%= item.listitem %>
-                      </div>
-                      <div class="tierlist-item-img">
-                        <%= image_tag item.image.variant(resize: "100x100") if item.image.attached? %>
-                      </div>
-                    </div>
-                        <% if @can_vote %>
-                          <div class="vote-buttons">
-                            <div class="buttons-container">
-                                <% if @can_add_item %>
-                                  <%= link_to "削除", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" }, class: 'delete-button' %>
-                                <% end %>
-                              </div>
-                            <%= button_to "up", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'up'), method: :post, class: 'vote-button upvote' %>
-                            <%= button_to "stay", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'stay'), method: :post, class: 'vote-button stay' %>
-                            <%= button_to "down", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'down'), method: :post, class: 'vote-button downvote' %>
-                          </div>
-                        <% end %>
-                  </li>
-                <% end %>
-              </ul>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-  <div class="comments-section">
-    <h2>コメント</h2>
-    <div id="comments">
-      <%= form_with(model: [@tierlist, Comment.new], local: true) do |form| %>
-        <div class="field">
-          <%= form.label :content, "コメントを追加" %>
-          <%= form.text_area :content %>
-        </div>
-        <div class="actions">
-          <%= form.submit "送信" %>
-        </div>
-      <% end %>
-
-      <ul>
-        <% @tierlist.comments.each do |comment| %>
-          <li>
-            <strong><%= comment.user ? comment.user.name : "匿名" %></strong>
-            <div class="comment-content">
-              <p><%= comment.content %></p>
-            </div>
-            <% if comment.user == current_user %>
-              <%= link_to "削除", tierlist_tierlistitem_path(@tierlist, comment), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" }, class: 'delete-button' %>
+<table class="tierlist-table">
+  <tbody>
+    <% @tierlistitems&.group_by(&:rank)&.each do |rank, items| %>
+      <tr class="rank-<%= rank %>">
+        <td>
+          <strong>
+            <% case rank %>
+            <% when 1 %>
+              S
+            <% when 2 %>
+              A
+            <% when 3 %>
+              B
+            <% when 4 %>
+              C
+            <% when 5 %>
+              D
+            <% when 6 %>
+              E
+            <% else %>
+              <%= rank %>
             <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-</div>
+          </strong>
+        </td>
+        <td>
+          <ul class="tierlist-items-inline" id="tierlist-rank-<%= rank %>">
+            <% items.sort_by(&:position).each do |item| %>
+            <li id="item-<%= item.id %>" draggable="true">
+                <div class="tierlist-item">
+                  <div class="tierlist-item-name">
+                    <%= item.listitem %>
+                  </div>
+                  <div class="tierlist-item-img">
+                    <%= image_tag item.image.variant(resize: "100x100") if item.image.attached? %>
+                  </div>
+                </div>
+                    <% if @can_vote %>
+                      <div class="vote-buttons">
+                        <div class="buttons-container">
+                            <% if @can_add_item %>
+                              <%= link_to "削除", tierlist_tierlistitem_path(@tierlist, item), data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" }, class: 'delete-button' %>
+                            <% end %>
+                          </div>
+                        <%= button_to "up", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'up'), method: :post, class: 'vote-button upvote' %>
+                        <%= button_to "stay", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'stay'), method: :post, class: 'vote-button stay' %>
+                        <%= button_to "down", tierlist_tierlistitem_votes_path(@tierlist, item, vote_type: 'down'), method: :post, class: 'vote-button downvote' %>
+                      </div>
+                    <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
 <script>
   function adjustFontSize(element) {

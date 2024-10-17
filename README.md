@@ -24,43 +24,43 @@ https://gstonehill.xyz
 1. リポジトリをクローンします。
 
     ```sh
-    git clone https://github.com/username/tier-list-app.git
-    cd tier-list-app
+    $ git clone https://github.com/username/tier-list-app.git
+    $ cd tier-list-app
     ```
 
 2. dockerコンテナをビルドします。
 
     ```sh
-    docker compose build
+    $ docker compose build
     ```
 
 3. webサービスコンテナ内に入ります。
 
     ```sh
-    docker compose up -d
-    docker compose exec web bash
+    $ docker compose up -d
+    $ docker compose exec web bash
     ```
 
 
 4. webサービスコンテナ内でデータベースをセットアップします。
 
     ```sh
-    rails db:create
-    rails db:migrate
-    rails db:seed
-    exit
+    $ rails db:create
+    $ rails db:migrate
+    $ rails db:seed
+    $ exit
     ```
 
 初回起動時以外は次のコマンドで実行可能です。
 
 ```sh
-    docker compose up -d
+    $ docker compose up -d
 ```
 
 開発環境の使用をしないときは次のコマンドでコンテナを停止・削除してください。
 
 ```sh
-    docker compose down
+    $ docker compose down
 ```
 
 ### 本番環境でのセットアップ
@@ -68,31 +68,31 @@ https://gstonehill.xyz
 本番環境で実行するには、以下のコマンドを実行してください。初期化としてマスターキーの生成とパスの設定が必要な場合があります。
 
 ```sh
-set -o errexit
-bundle install
-bundle exec rails assets:precompile RAILS_ENV=production
-bundle exec rails assets:clean RAILS_ENV=production
-bundle exec rails db:migrate RAILS_ENV=production
+$ set -o errexit
+$ bundle install
+$ bundle exec rails assets:precompile RAILS_ENV=production
+$ bundle exec rails assets:clean RAILS_ENV=production
+$ bundle exec rails db:migrate RAILS_ENV=production
 ```
 
 サンプルユーザが必要な方は下記を実行してください(本番環境での実行は推奨いたしません。)
 
 ```sh
-bundle exec rails db:seed
+$ bundle exec rails db:seed
 ```
 
 その後、テストを実行してください
 
 ```
-rails test
-bin/rspec
+$ rails test
+$ bin/rspec
 ```
 
 開発環境の場合は下記１行目、本番環境の場合は２行目を実行してください
 ```sh
-rails s
+$ rails s
 ```
 ```sh
-env RAILS_ENV=production  bundle exec puma -C config/puma.rb &
+$ env RAILS_ENV=production  bundle exec puma -C config/puma.rb &
 ```
 * Ruby version 3.2.3
