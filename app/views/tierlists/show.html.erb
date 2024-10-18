@@ -99,9 +99,11 @@
       </tbody>
     </table>
   </div>
+  <% if @can_add_item %>
     <div>
       <%= link_to 'ティアリスト設定', edit_tierlist_path(@tierlist), class: 'btn btn-info' %>
     </div>
+  <% end %>
   <div class="comments-section">
     <h2>コメント</h2>
     <div id="comments">
