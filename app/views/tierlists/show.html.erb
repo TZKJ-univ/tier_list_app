@@ -12,31 +12,31 @@
       </div>
     <% end %>
 
-    <div class="field">
-      <%= form.label "追加アイテム" %>
-      <%= form.text_field :listitem, id: "listitem_field" %>
-    </div>
-    <div class="field">
-      <%= form.label "TIERを選択" %>
-      <%= form.select :rank, options_for_select([['S', 1], ['A', 2], ['B', 3], ['C', 4], ['D', 5], ['E', 6]]) %>
-    </div>
-    <div class="field">
-      <span class="image">
-        <%= form.file_field :image %>
-      </span>
-    </div>
-    <div class="actions">
-      <%= form.submit "追加", id: "submit_button"%>
-    </div>
-    <div>
-      <%= link_to 'ティアリスト設定', edit_tierlist_path(@tierlist), class: 'btn btn-info' %>
+    <div class="field-container">
+      <div class="field">
+        <%= form.label "アイテム名" %>
+        <%= form.text_field :listitem, id: "listitem_field" %>
+      <div class="actions">
+        <%= form.submit "追加", id: "submit_button", class: "btn btn-primary" %>
+      </div>
+      </div>
+      <div class="field">
+        <%= form.label "TIER" %>
+        <%= form.select :rank, options_for_select([['S', 1], ['A', 2], ['B', 3], ['C', 4], ['D', 5], ['E', 6]]) %>
+      </div>
+      <div class="field">
+        <span class="image">
+          <%= form.label '画像' %>
+          <%= form.file_field :image %>
+        </span>
+      </div>
     </div>
   <% end %>
 <% end %>
 
 <div class="ad-container">
   <!-- admax -->
-  <script src="https://adm.shinobi.jp/s/00ef48a69f22cb03b5897c0e01867e50"></script>
+  <!-- <script src="https://adm.shinobi.jp/s/00ef48a69f22cb03b5897c0e01867e50"></script> -->
   <!-- admax -->
 </div>
 
@@ -99,6 +99,9 @@
       </tbody>
     </table>
   </div>
+    <div>
+      <%= link_to 'ティアリスト設定', edit_tierlist_path(@tierlist), class: 'btn btn-info' %>
+    </div>
   <div class="comments-section">
     <h2>コメント</h2>
     <div id="comments">
@@ -108,7 +111,7 @@
           <%= form.text_area :content %>
         </div>
         <div class="actions">
-          <%= form.submit "送信" %>
+          <%= form.submit "送信", class: 'btn btn-primary btn-small' %>
         </div>
       <% end %>
 

@@ -556,19 +556,22 @@ span.image {
 /* comments */
   
 .comments-section {
-width: 28%;
-margin-left: 2%;
+width: 70%;
+// margin-left: 2%;
 border-left: 1px solid #ccc;
-padding-left: 10px;
+border-right: 1px solid #ccc;
+// padding-left: 10px;
+    margin: 0 auto;
 }
 
 .comments-section h2 {
 font-size: 1.5em;
+color: #ccc;
 }
 
 .comments-section ul {
 list-style-type: none;
-padding: 0;
+padding: 10px;
 }
 
 .comments-section li {
@@ -578,16 +581,60 @@ margin-bottom: 15px;
 .comments-section .field,
 .comments-section .actions {
 margin-bottom: 10px;
+padding: 10px;
 }
+
 .tierlist-container {
-    display: flex;
+    // display: flex;
     justify-content: space-between;
 }
 
 .comment-content {
-    background-color: #f0f0f0; /* 背景色を設定 */
-    padding: 10px; /* コメント内容部分にパディングを追加 */
-    border-radius: 5px; /* コーナーを少し丸くする */
-    margin-top: 5px; /* ユーザー名との間にスペースを追加 */
-    border: 1px solid #ddd; /* 薄い境界線を追加 */
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
 }
+
+.field-container {
+    display: flex;
+    margin: 0 auto;
+    width: 90%;
+  }
+  
+  .field {
+    // flex-grow: 1; /* 入力フィールドをできるだけ広くする */
+    margin-right: 10px; /* ボタンとの間に余白を追加 */
+    margin: 0 auto;
+  }
+  
+  .actions {
+    width: 40%;
+    margin: 0 auto;
+  }
+  .field select {
+    // appearance: none; /* デフォルトのスタイルを無効化 */
+    background-color: #f0f0f0; /* 背景色を設定 */
+    border: 2px solid #ccc; /* 枠線を太めに */
+    border-radius: 5px; /* 角を丸く */
+    padding: 10px; /* 内側に余白を追加 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 軽く影を追加 */
+    transition: all 0.3s ease; /* スムーズなアニメーションを追加 */
+  }
+  
+  .field select:hover, .field select:focus {
+    background-color: #fff; /* ホバー時に背景色を変更 */
+    border-color: #007bff; /* 枠線の色を変更 */
+    outline: none; /* フォーカス時のアウトラインを非表示 */
+  }
+  .field .image input[type="file"] {
+    border-radius: 5px; /* 角を丸く */
+    cursor: pointer; /* ホバー時にカーソルをポインタに */
+    transition: all 0.3s ease; /* スムーズなアニメーション */
+  }
+  
+  .field .image input[type="file"]:hover, .field .image input[type="file"]:focus {
+    border-color: #007bff; /* 枠線の色を変更 */
+  }
+  
