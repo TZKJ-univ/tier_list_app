@@ -1,0 +1,37 @@
+name: Auto Create PR on new push
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. リポジトリをチェックアウト
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for differences with main
+        id: diff-check
+        run: |
+            git fetch origin main
+            if git diff --quiet origin/main; then
+            echo "diff_found=false" >> $GITHUB_ENV
+            else
+            echo "diff_found=true" >> $GITHUB_ENV
+            fi
+
+      # 3. 差分があればPRを作成
+      - name: Create PR
+        if: env.diff_found == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref_name }}
+          base: main
+          title: "Auto PR: Changes from ${{ github.ref_name }}"
+          body: "This PR includes the changes from ${{ github.ref_name }}."
+          labels: 'auto-generated'
+          sign-commits: true
