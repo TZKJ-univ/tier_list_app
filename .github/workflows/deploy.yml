@@ -1,4 +1,4 @@
-name: Auto Pull on Merge
+name: Deploy production server
 
 on:
   push:
