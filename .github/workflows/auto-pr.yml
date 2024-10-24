@@ -16,7 +16,6 @@ jobs:
           script: |
             const branch = context.ref.replace('refs/heads/', '');
             if (branch === 'main') {
-              console.log('Main branch push detected, skipping PR creation.');
               return;
             }
 
