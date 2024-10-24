@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - '**'
+    branches-ignore:
+      - 'main'
 
 jobs:
   create-pr:
@@ -21,7 +23,7 @@ jobs:
             }
 
             // Check if a PR from this branch to main already exists
-            const { data: pulls } = await github.pulls.list({
+            const { data: pulls } = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
               head: `${context.repo.owner}:${branch}`,
@@ -31,7 +33,7 @@ jobs:
 
             if (pulls.length === 0) {
               // Create a new pull request
-              await github.pulls.create({
+              await github.rest.pulls.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 head: branch,
