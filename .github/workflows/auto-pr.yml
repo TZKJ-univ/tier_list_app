@@ -4,34 +4,45 @@ on:
   push:
     branches:
       - '**'
+    branches-ignore:
+      - 'main'
 
 jobs:
   create-pr:
     runs-on: ubuntu-latest
     steps:
-      # 1. リポジトリをチェックアウト
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Check for differences with main
-        id: diff-check
-        run: |
-            git fetch origin main
-            if git diff --quiet origin/main; then
-            echo "diff_found=false" >> $GITHUB_ENV
-            else
-            echo "diff_found=true" >> $GITHUB_ENV
-            fi
-
-      # 3. 差分があればPRを作成
-      - name: Create PR
-        if: env.diff_found == 'true'
-        uses: peter-evans/create-pull-request@v5
+      - name: Create Pull Request
+        uses: actions/github-script@v6
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref_name }}
-          base: main
-          title: "Auto PR: Changes from ${{ github.ref_name }}"
-          body: "This PR includes the changes from ${{ github.ref_name }}."
-          labels: 'auto-generated'
-          sign-commits: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const branch = context.ref.replace('refs/heads/', '');
+            if (branch === 'main') {
+              console.log('Main branch push detected, skipping PR creation.');
+              return;
+            }
+
+            // Check if a PR from this branch to main already exists
+            const { data: pulls } = await github.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${context.repo.owner}:${branch}`,
+              base: 'main',
+              state: 'open',
+            });
+
+            if (pulls.length === 0) {
+              // Create a new pull request
+              await github.pulls.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                head: branch,
+                base: 'main',
+                title: `Auto PR: Changes from ${branch}`,
+                body: `This PR includes the changes from ${branch}.`,
+                labels: ['auto-generated'],
+              });
+              console.log(`Created PR from ${branch} to main.`);
+            } else {
+              console.log(`PR from ${branch} to main already exists.`);
+            }
