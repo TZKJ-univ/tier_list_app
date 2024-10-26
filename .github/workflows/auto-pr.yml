@@ -53,3 +53,6 @@ jobs:
             } else {
               console.log(`PR from ${branch} to main already exists.`);
             }
+  call-workflow:
+      needs: [create-pr]
+      uses: ./.github/workflows/test.yml
