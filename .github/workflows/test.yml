@@ -1,15 +1,12 @@
 name: test
 
 on:
-  workflow_run:
-    workflows: ["Auto Create PR on new push"]
-    types:
-      - completed
-  push:
-    branches:
-      - '**'
-      - '!main'
-
+    repository_dispatch:
+      types: [run-test]
+    push:
+        branches:
+            - '**'
+            - '!main'
 jobs:
   test:
     runs-on: ubuntu-latest
