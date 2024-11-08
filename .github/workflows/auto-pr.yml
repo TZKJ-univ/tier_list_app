@@ -19,13 +19,11 @@ jobs:
           git config user.email "${{ github.actor }}@users.noreply.github.com"
 
       - name: Push branch to remote
-        if: "!startsWith(github.ref, 'refs/heads/main')"
         run: |
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git push origin HEAD
 
       - name: Create Pull Request
-        if: "!startsWith(github.ref, 'refs/heads/main')"
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -53,6 +51,3 @@ jobs:
             } else {
               console.log(`PR from ${branch} to main already exists.`);
             }
-  call-workflow:
-      needs: [create-pr]
-      uses: ./.github/workflows/test.yml
