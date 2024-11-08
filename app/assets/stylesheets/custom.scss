@@ -565,11 +565,9 @@ span.image {
   
 .comments-section {
 width: 70%;
-// margin-left: 2%;
 border-left: 1px solid #ccc;
 border-right: 1px solid #ccc;
-// padding-left: 10px;
-    margin: 0 auto;
+margin: 0 auto;
 }
 
 .comments-section h2 {
@@ -589,6 +587,7 @@ margin-bottom: 15px;
 .comments-section .field,
 .comments-section .actions {
 margin-bottom: 10px;
+color: black;
 padding: 10px;
 }
 
@@ -600,6 +599,7 @@ padding: 10px;
 .comment-content {
     background-color: #f0f0f0;
     padding: 10px;
+    color: black;
     border-radius: 5px;
     margin-top: 5px;
     border: 1px solid #ddd;
@@ -612,8 +612,7 @@ padding: 10px;
   }
   
   .field {
-    // flex-grow: 1; /* 入力フィールドをできるだけ広くする */
-    margin-right: 10px; /* ボタンとの間に余白を追加 */
+    margin-right: 10px;
     margin: 0 auto;
   }
   
@@ -622,27 +621,32 @@ padding: 10px;
     margin: 0 auto;
   }
   .field select {
-    // appearance: none; /* デフォルトのスタイルを無効化 */
-    background-color: #f0f0f0; /* 背景色を設定 */
-    border: 2px solid #ccc; /* 枠線を太めに */
-    border-radius: 5px; /* 角を丸く */
-    padding: 10px; /* 内側に余白を追加 */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 軽く影を追加 */
-    transition: all 0.3s ease; /* スムーズなアニメーションを追加 */
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
   }
   
   .field select:hover, .field select:focus {
-    background-color: #fff; /* ホバー時に背景色を変更 */
-    border-color: #007bff; /* 枠線の色を変更 */
-    outline: none; /* フォーカス時のアウトラインを非表示 */
+    background-color: #fff;
+    border-color: #007bff;
+    outline: none;
   }
   .field .image input[type="file"] {
-    border-radius: 5px; /* 角を丸く */
-    cursor: pointer; /* ホバー時にカーソルをポインタに */
-    transition: all 0.3s ease; /* スムーズなアニメーション */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
   }
   
   .field .image input[type="file"]:hover, .field .image input[type="file"]:focus {
-    border-color: #007bff; /* 枠線の色を変更 */
+    border-color: #007bff;
   }
-  
+
+  .field-container input, 
+  .field-container select,
+  .field-container textarea {
+  color: black;
+  }
