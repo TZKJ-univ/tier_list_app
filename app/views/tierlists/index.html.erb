@@ -58,7 +58,7 @@
       </span>
       <span class="timestamp">
         <%= time_ago_in_words(tierlist.created_at) %> ago.
-        <% if current_user?(tierlist.user) or tierlist.editable_by_anyone%>
+        <% if current_user?(tierlist.user) or tierlist.editable_by_anyone or current_user.admin?%>
           <%= link_to "削除", tierlist,
           data: { "turbo-method": :delete, turbo_confirm: "削除しますか?" } %>
         <% end %>
@@ -68,26 +68,26 @@
 </ul>
 <script>
   function adjustFontSize(element) {
-    let fontSize = 100; // 初期フォントサイズ
+    let fontSize = 100;
     const divWidth = element.clientWidth;
     
-    while (element.scrollWidth > divWidth && fontSize > 5) { // テキストがはみ出しているかチェック
+    while (element.scrollWidth > divWidth && fontSize > 5) {
       fontSize--;
       element.style.fontSize = fontSize + 'px';
       // element.style.boxSizing = 'border-box'; // ボックスサイズを調整
-      element.style.padding = '0'; // パディングが邪魔しないようにする
+      element.style.padding = '0';
     }
-    while (element.scrollHeight > element.clientHeight && fontSize > 5) { // テキストがはみ出しているかチェック
+    while (element.scrollHeight > element.clientHeight && fontSize > 5) {
       fontSize--;
       element.style.fontSize = fontSize + 'px';
       // element.style.boxSizing = 'border-box'; // ボックスサイズを調整
-      element.style.padding = '0'; // パディングが邪魔しないようにする
+      element.style.padding = '0';
     }
   }
 
   document.addEventListener("turbo:load", function() {
     document.querySelectorAll('.tierlist-item-name').forEach((item) => {
-      adjustFontSize(item); // テキストがdivに収まるようにフォントサイズを調整
+      adjustFontSize(item);
     });
   });
 </script>
