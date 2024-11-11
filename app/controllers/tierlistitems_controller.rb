@@ -59,7 +59,7 @@ class TierlistitemsController < ApplicationController
   end
 
   def correct_user
-    return if @tierlist.editable_by_anyone || current_user == @tierlist.user
+    return if @tierlist.editable_by_anyone || current_user == @tierlist.user || current_user.admin?
 
     flash[:error] = '権限がありません'
     redirect_to root_url
