@@ -67,7 +67,7 @@ class TierlistsController < ApplicationController
   def correct_user
     if logged_in?
       @tierlist = Tierlist.find_by(id: params[:id])
-      if (@tierlist.user != current_user) && (Tierlist.find_by(id: params[:id]).editable_by_anyone == false)
+      if (@tierlist.user != current_user) && (Tierlist.find_by(id: params[:id]).editable_by_anyone == false && current_user.admin? == false)
         redirect_to root_url,
                     status: :see_other
       end
