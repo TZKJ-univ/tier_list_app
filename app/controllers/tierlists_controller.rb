@@ -6,10 +6,10 @@ class TierlistsController < ApplicationController
   before_action :correct_user, only: %i[destroy]
 
   def new
-    # unless logged_in?
-    #   guest_user = User.create_guest_user
-    #   log_in(guest_user)
-    # end
+    unless logged_in?
+      guest_user = User.create_guest_user
+      log_in(guest_user)
+    end
     @tierlist = Tierlist.new
   end
 
@@ -81,7 +81,7 @@ class TierlistsController < ApplicationController
   end
 
   def check_edit_permission
-    return if @tierlist.editable_by_anyone || @tierlist.user == current_user
+    return if @tierlist.editable_by_anyone || @tierlist.user == current_user || current_user.admin?
 
     redirect_to tierlists_path, alert: '権限がありません'
   end
