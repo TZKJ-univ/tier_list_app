@@ -34,7 +34,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            pkill -9 ruby
+            pkill -9 ruby || true
 
       - name: Install dependencies
         uses: appleboy/ssh-action@master
